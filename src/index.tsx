@@ -72,11 +72,7 @@ const applyCommonStyles = ({
   SIZE,
   W,
   H,
-  C,
   BG,
-  LINE_H,
-  FONT,
-  F_SIZE,
   center_me,
   style,
 }: {
@@ -98,11 +94,7 @@ const applyCommonStyles = ({
   BOW?: number | string;
   BOC?: string;
   center_me?: string;
-  C?: string;
   BG?: string;
-  LINE_H?: number;
-  FONT?: string;
-  F_SIZE?: number;
   SIZE?: number;
   W?: number | string | undefined;
   H?: number | string | undefined;
@@ -114,7 +106,6 @@ const applyCommonStyles = ({
   ColumnCenterStart?: boolean;
   RowCenterStart?: boolean;
 }) => {
-  // console.log('fontSize', F_SIZE);
   return {
     // padding
     ...(P ? { padding: P } : {}),
@@ -140,13 +131,10 @@ const applyCommonStyles = ({
     ...(W ? { width: W } : {}),
     ...(H ? { height: H } : {}),
     //colors
-    ...(C ? { color: C } : { color: config.defaultTextColor }),
     ...(BG
       ? { backgroundColor: BG }
       : { backgroundColor: config.defaultBackgroundColor }),
-    ...(F_SIZE ? { fontSize: F_SIZE } : { fontSize: config.defaultFontSize }),
-    ...(FONT ? { fontFamily: FONT } : {}),
-    ...(LINE_H ? { lineHeight: LINE_H } : {}),
+
     //center
 
     ...(FullColumnCenter
@@ -185,11 +173,27 @@ const applyCommonStyles = ({
 
 export const AppText: React.FC<CustomTextProps> = ({
   children,
+  F_SIZE,
+  FONT,
+  C,
+  LINE_H,
   N_LINE = 5,
+  FONT_WEIGHT,
   ...rest // Rest props for Text component
 }) => {
   return (
-    <Text numberOfLines={N_LINE} style={applyCommonStyles(rest)} {...rest}>
+    <Text
+      numberOfLines={N_LINE}
+      style={[
+        F_SIZE ? { fontSize: F_SIZE } : { fontSize: config.defaultFontSize },
+        C ? { color: C } : { color: config.defaultTextColor },
+        FONT ? { fontFamily: FONT } : {},
+        LINE_H ? { lineHeight: LINE_H } : {},
+        FONT_WEIGHT ? { fontWeight: FONT_WEIGHT } : {},
+        applyCommonStyles(rest),
+      ]}
+      {...rest}
+    >
       {children}
     </Text>
   );
@@ -211,6 +215,8 @@ export const AppImage: React.FC<CustomImageProps> = ({
   resizeMode = 'contain',
   ...rest // Rest props for Image component
 }) => {
+  console.log('fontSize', rest);
+
   return (
     <Image
       source={source}

@@ -18,6 +18,7 @@ export interface TextStylingProps {
   T_ALIGN?: 'auto' | 'left' | 'right' | 'center' | 'justify'; // text align
   LINE_H?: number; // line height
   N_LINE?: number; // number of lines
+  FONT_WEIGHT?: TextStyle['fontWeight'];
 }
 
 // Spacing Props

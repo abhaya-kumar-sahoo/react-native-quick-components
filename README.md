@@ -17,12 +17,12 @@ npm install react-native-quick-components
 ```
 ## Usage
 
-Import the components you need from `abhaya-rn-kit` and use them in your React Native application:
+Import the components you need from `react-native-quick-components` and use them in your React Native application:
 
 ```javascript
 import React from 'react';
 import { View } from 'react-native';
-import { AppText, AppView, AppImage, CircleView, RowView, ColumView, AbsoluteView } from 'abhaya-rn-kit';
+import { AppText, AppView, AppImage, CircleView, RowView, ColumView, AbsoluteView } from 'react-native-quick-components';
 
 
 const App = () => {

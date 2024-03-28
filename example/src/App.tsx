@@ -1,31 +1,22 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-abhaya-test';
+import {
+  AppText,
+  CircleView,
+  FlexView,
+  init,
+} from 'react-native-quick-components';
+init({
+  defaultFontSize: 50,
+  // defaultBackgroundColor: 'black',
+  defaultTextColor: 'green',
+});
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <FlexView FullColumnCenter>
+      <CircleView SIZE={200} BG="red" />
+      <AppText>Abhaya</AppText>
+    </FlexView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});

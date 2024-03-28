@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-abhaya-test": ["./src/index"]
+      "react-native-quick-components": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

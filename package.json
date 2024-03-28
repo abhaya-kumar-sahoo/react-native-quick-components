@@ -1,7 +1,7 @@
 {
-  "name": "react-native-abhaya-test",
-  "version": "0.1.0",
-  "description": "fdxcgvhbjk",
+  "name": "react-native-quick-components",
+  "version": "0.0.3",
+  "description": "Reusable React Native components and utilities created by Abhaya",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-abhaya-test-example",
+    "example": "yarn workspace react-native-quick-components-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -41,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://a.com.git"
+    "url": "git+https://github.com/abhaya-kumar-sahoo/react-native-quick-components.git"
   },
   "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://a.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://a.com/issues"
+    "url": "https://github.com/abhaya-kumar-sahoo/react-native-quick-components/issues"
   },
-  "homepage": "https://a.com#readme",
+  "homepage": "https://github.com/abhaya-kumar-sahoo/react-native-quick-components#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

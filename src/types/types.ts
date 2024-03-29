@@ -5,9 +5,9 @@ import type {
   StyleProp,
   TextProps,
   TextStyle,
-  TouchableOpacityProps,
   ViewStyle,
   ViewProps,
+  TouchableOpacityProps,
 } from 'react-native';
 // type FontFamily = (typeof config.Colors)[number];
 
@@ -144,6 +144,27 @@ export type AbsoluteViewProps = TouchableOpacityProps &
     B?: number;
     L?: number;
     R?: number;
+  };
+
+export type AppButtonProps = TouchableOpacityProps &
+  BorderProps &
+  SpacingProps & {
+    title?: string;
+    C?: string;
+    BG?: string;
+    center?: boolean;
+    F_SIZE?: number | undefined;
+    disabled?: boolean;
+    onPress?: () => void;
+    PX?: number | undefined;
+    PY?: number | undefined;
+    MX?: number | undefined;
+    MY?: number | undefined;
+    FONT?: string | undefined;
+    W?: number; // width
+    H?: number; // height
+    FONT_WEIGHT?: TextStyle['fontWeight'];
+    style?: StyleProp<TouchableOpacityProps>;
   };
 
 export type CustomImageProps = CustomImageProp & {

@@ -9,25 +9,28 @@ import {
 } from 'react-native';
 import type {
   AbsoluteViewProps,
+  AppButtonProps,
   CustomCircleProps,
   CustomImageProps,
   CustomTextProps,
   CustomViewProps,
   FlexViewProps,
   RowViewProps,
-} from './types/index.style';
+} from './types/types';
 
 interface NewConfig {
   defaultTextColor?: string;
   defaultBackgroundColor?: string | null;
   defaultFontFamily?: string | null;
   defaultFontSize?: string | number;
+  colorTypes?: any;
 }
 let config: NewConfig = {
   defaultTextColor: 'blue',
   defaultBackgroundColor: null,
   defaultFontFamily: null,
   defaultFontSize: 20,
+  colorTypes: null,
 };
 
 export const init = (newConfig: NewConfig) => {
@@ -42,6 +45,9 @@ export const init = (newConfig: NewConfig) => {
   }
   if (newConfig.defaultFontSize) {
     config.defaultFontSize = newConfig.defaultFontSize;
+  }
+  if (newConfig.colorTypes) {
+    config.colorTypes = newConfig.colorTypes;
   }
 };
 
@@ -171,6 +177,88 @@ const applyCommonStyles = ({
   };
 };
 
+const applyTextStyles = ({
+  P,
+  PL,
+  PR,
+  PT,
+  PB,
+  PX,
+  PY,
+  M,
+  ML,
+  MB,
+  MT,
+  MR,
+  MY,
+  MX,
+  BOR,
+  BOW,
+  BOC,
+  W,
+  H,
+  BG,
+  center_me,
+  style,
+}: {
+  P?: number | string;
+  PL?: number | string;
+  PR?: number | string;
+  PT?: number | string;
+  PB?: number | string;
+  PX?: number | string;
+  PY?: number | string;
+  M?: number | string;
+  ML?: number | string;
+  MB?: number | string;
+  MT?: number | string;
+  MR?: number | string;
+  MY?: number | string;
+  MX?: number | string;
+  BOR?: number | string;
+  BOW?: number | string;
+  BOC?: string;
+  center_me?: string;
+  BG?: string;
+  SIZE?: number;
+  W?: number | string | undefined;
+  H?: number | string | undefined;
+  style?: any;
+}) => {
+  return {
+    // padding
+    ...(P ? { padding: P } : {}),
+    ...(PL ? { paddingLeft: PL } : {}),
+    ...(PR ? { paddingRight: PR } : {}),
+    ...(PT ? { paddingTop: PT } : {}),
+    ...(PB ? { paddingBottom: PB } : {}),
+    ...(PX ? { paddingHorizontal: PX } : {}),
+    ...(PY ? { paddingVertical: PY } : {}),
+    // margin
+    ...(M ? { margin: M } : {}),
+    ...(ML ? { marginLeft: ML } : {}),
+    ...(MR ? { marginRight: MR } : {}),
+    ...(MT ? { marginTop: MT } : {}),
+    ...(MB ? { marginBottom: MB } : {}),
+    ...(MX ? { marginHorizontal: MX } : {}),
+    ...(MY ? { marginVertical: MY } : {}),
+    // border
+    ...(BOR ? { borderRadius: BOR } : {}),
+    ...(BOW ? { borderWidth: BOW, borderColor: BOC } : {}),
+    //sizes
+    ...(W ? { width: W } : {}),
+    ...(H ? { height: H } : {}),
+    //colors
+    ...(BG ? { backgroundColor: BG } : {}),
+
+    //center
+
+    ...(center_me ? { alignSelf: center_me } : {}),
+
+    //custom styles
+    ...(typeof style === 'object' ? style : {}),
+  };
+};
 export const AppText: React.FC<CustomTextProps> = ({
   children,
   F_SIZE,
@@ -190,7 +278,7 @@ export const AppText: React.FC<CustomTextProps> = ({
         FONT ? { fontFamily: FONT } : {},
         LINE_H ? { lineHeight: LINE_H } : {},
         FONT_WEIGHT ? { fontWeight: FONT_WEIGHT } : {},
-        applyCommonStyles(rest),
+        applyTextStyles(rest),
       ]}
       {...rest}
     >
@@ -329,5 +417,65 @@ export const FlexSafeView: React.FC<FlexViewProps> = ({
     <SafeAreaView style={[{ flex: 1 }, applyCommonStyles(props)]} {...props}>
       {children}
     </SafeAreaView>
+  );
+};
+
+export const AppButton: React.FC<AppButtonProps> = ({
+  title = 'Press',
+  C = 'white',
+  BG = 'red',
+  PX = 20,
+  PY = 3,
+  MX = undefined,
+  MY = undefined,
+  F_SIZE = 20,
+  W,
+  H,
+  // border
+  BOR = 40,
+  BOW = undefined,
+  BOC = undefined,
+  FONT = 'CalibriBold',
+  FONT_WEIGHT,
+  center = false,
+
+  ...props
+}) => {
+  return (
+    <TouchableOpacity
+      {...props}
+      activeOpacity={0.6}
+      style={[
+        BG ? { backgroundColor: BG } : {},
+
+        BOR ? { borderRadius: BOR } : {},
+        {
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+          alignSelf: center ? 'center' : 'baseline',
+        },
+        // size
+        W ? { width: W } : {},
+        H ? { height: H } : {},
+        //border
+        BOR ? { borderRadius: BOR } : {},
+        BOC ? { borderColor: BOC } : {},
+        BOW ? { borderWidth: BOW } : {},
+        // margin
+
+        MX ? { marginHorizontal: MX } : {},
+        MY ? { margin: MY } : {},
+
+        // padding
+
+        PX ? { paddingHorizontal: PX } : {},
+        PY ? { paddingBottom: PY + 3, paddingTop: PY } : {},
+      ]}
+    >
+      <AppText FONT_WEIGHT={FONT_WEIGHT} C={C} FONT={FONT} F_SIZE={F_SIZE}>
+        {title}
+      </AppText>
+    </TouchableOpacity>
   );
 };

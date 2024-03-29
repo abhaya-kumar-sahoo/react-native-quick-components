@@ -1,6 +1,6 @@
 {
   "name": "react-native-quick-components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Reusable React Native components and utilities created by Abhaya",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

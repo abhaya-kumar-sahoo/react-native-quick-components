@@ -8,17 +8,23 @@ import type {
   ViewStyle,
   ViewProps,
   TouchableOpacityProps,
+  TextInputProps,
+  ImagePropsBase,
 } from 'react-native';
-// type FontFamily = (typeof config.Colors)[number];
+import type { DefaultColors } from './colors';
+
+type ColorSuggestion =
+  | keyof typeof DefaultColors
+  | `${keyof typeof DefaultColors}:${keyof (typeof DefaultColors)['slate']}`
+  | (string & {});
 
 export interface TextStylingProps {
-  C?: string; // color
+  C?: ColorSuggestion;
   FONT?: string; // font family
   F_SIZE?: number; // font size
-  T_ALIGN?: 'auto' | 'left' | 'right' | 'center' | 'justify'; // text align
+  ALINE?: TextStyle['textAlign']; // text align
   LINE_H?: number; // line height
-  N_LINE?: number; // number of lines
-  FONT_WEIGHT?: TextStyle['fontWeight'];
+  F_WEIGHT?: TextStyle['fontWeight'];
 }
 
 // Spacing Props
@@ -43,12 +49,12 @@ export interface SpacingProps {
 export interface BorderProps {
   BOR?: number; // border radius
   BOW?: number;
-  BOC?: string; // border color
+  BOC?: ColorSuggestion; // border color
 }
 
 // Background and Shadow Props
 export interface BackgroundProps {
-  BG?: string; // background color
+  BG?: ColorSuggestion; // background color
 }
 // Background and Shadow Props
 interface CenterProps {
@@ -90,6 +96,17 @@ export interface AppViewProps
   style?: StyleProp<ViewStyle>; // style
 }
 
+// Combined View Props
+export interface CustomBoxProps {
+  flexBasis?: ViewStyle['flexBasis'];
+  flexGrow?: ViewStyle['flexGrow'];
+  flexShrink?: ViewStyle['flexShrink'];
+  flexWrap?: ViewStyle['flexWrap'];
+  gap?: ViewStyle['gap'];
+  rowGap?: ViewStyle['rowGap'];
+  colGap?: ViewStyle['columnGap'];
+}
+
 // Source Props
 export interface SourceProps {
   source: ImageProps['source'];
@@ -116,7 +133,8 @@ export interface CustomImageProp
   style?: StyleProp<ImageStyle>; // style
 }
 
-export type CustomCircleProps = SpacingProps &
+export type CustomCircleProps = TouchableOpacityProps &
+  SpacingProps &
   BoxSizeProps &
   CenterProps &
   BackgroundProps &
@@ -130,16 +148,20 @@ export type RowViewProps = TouchableOpacityProps &
   CenterProps &
   SpacingProps & {
     children?: ReactNode;
-    BG?: string;
+    BG?: ColorSuggestion;
     JC?: ViewStyle['justifyContent'];
     ALI?: ViewStyle['alignItems'];
+    gap?: ViewStyle['gap'];
+    rowGap?: ViewStyle['rowGap'];
+    colGap?: ViewStyle['columnGap'];
+    flexWrap?: ViewStyle['flexWrap'];
   };
 export type AbsoluteViewProps = TouchableOpacityProps &
   BorderProps &
   CenterProps &
   SpacingProps & {
     children?: ReactNode;
-    BG?: string;
+    BG?: ColorSuggestion;
     T?: number;
     B?: number;
     L?: number;
@@ -150,8 +172,8 @@ export type AppButtonProps = TouchableOpacityProps &
   BorderProps &
   SpacingProps & {
     title?: string;
-    C?: string;
-    BG?: string;
+    C?: ColorSuggestion;
+    BG?: ColorSuggestion;
     center?: boolean;
     F_SIZE?: number | undefined;
     disabled?: boolean;
@@ -163,14 +185,17 @@ export type AppButtonProps = TouchableOpacityProps &
     FONT?: string | undefined;
     W?: number; // width
     H?: number; // height
-    FONT_WEIGHT?: TextStyle['fontWeight'];
+    F_WEIGHT?: TextStyle['fontWeight'];
     style?: StyleProp<TouchableOpacityProps>;
   };
 
-export type CustomImageProps = CustomImageProp & {
-  style?: StyleProp<ImageStyle>; // style
-};
+export type CustomImageProps = CustomImageProp &
+  ImagePropsBase & {
+    style?: StyleProp<ImageStyle>; // style
+  };
 
 export type CustomTextProps = TextProps & AppTextProps;
+export type CustomTextInputProps = TextInputProps & AppTextProps;
 export type CustomViewProps = TouchableOpacityProps & AppViewProps;
 export type FlexViewProps = ViewProps & AppViewProps;
+export type BoxProps = CustomBoxProps & AppViewProps & ViewProps;

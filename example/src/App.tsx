@@ -4,38 +4,100 @@ import {
   AppButton,
   AppImage,
   AppText,
+  AppTextInput,
+  BoxView,
   CircleView,
+  ColView,
   FlexView,
   init,
+  RowView,
 } from 'react-native-quick-components';
 init({
-  defaultFontSize: 50,
   defaultBackgroundColor: 'black',
-  defaultTextColor: 'green',
 });
 
 export default function App() {
+  const [first, setFirst] = React.useState('');
+
   return (
     <FlexView FullColumnCenter>
-      <CircleView SIZE={200} BG="red" />
-      <AppText C="red">Abhaya</AppText>
+      <CircleView BOC="white" BOW={4} SIZE={200} BG="teal" />
+
+      <AppText
+        numberOfLines={1}
+        F_SIZE={30}
+        BG="amber:500"
+        C="blue:600"
+        F_WEIGHT="900"
+        FONT="serif"
+      >
+        abhaya-dev
+      </AppText>
       <AppImage
         source={{
-          uri: 'https://m.media-amazon.com/images/M/MV5BMWU4ZjNlNTQtOGE2MS00NDI0LWFlYjMtMmY3ZWVkMjJkNGRmXkEyXkFqcGdeQXVyNjE1OTQ0NjA@._V1_FMjpg_UX1000_.jpg',
+          uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT13BKV8WV4_tnm5OWK4RV-G9O5tzpfzGezdw&usqp=CAU',
         }}
         SIZE={100}
         resizeMode="cover"
         BOR={60}
         BOW={2}
-        BOC="white"
+        BOC="blue:200"
       />
       <AppButton
-        BG="green"
-        title="Pressjwhrcjverjvcejvrhe"
+        BG="red"
+        title="Press me"
         PX={19}
+        BOC="white"
+        BOW={2}
         center
+        C="teal:100"
         onPress={() => {}}
       />
+      <AppTextInput
+        BOR={10}
+        BOW={4}
+        value={first}
+        onChangeText={setFirst}
+        BOC="white"
+        W={250}
+        PX={10}
+        H={40}
+        BG="cyan:400"
+      />
+      <RowView BG="cyan:800" rowGap={20} colGap={20}>
+        <BoxView BG="red" W={100}>
+          <AppText F_SIZE={20} F_WEIGHT="600" FONT="sans-serif">
+            Row 1
+          </AppText>
+        </BoxView>
+        <BoxView>
+          <AppText F_SIZE={20} F_WEIGHT="600" FONT="sans-serif">
+            Row 2
+          </AppText>
+        </BoxView>
+        <BoxView>
+          <AppText F_SIZE={20} F_WEIGHT="600" FONT="sans-serif">
+            Row 3
+          </AppText>
+        </BoxView>
+      </RowView>
+      <ColView>
+        <BoxView>
+          <AppText F_SIZE={20} F_WEIGHT="600" FONT="sans-serif">
+            Row 1 ff
+          </AppText>
+        </BoxView>
+        <BoxView>
+          <AppText F_SIZE={20} F_WEIGHT="600" FONT="sans-serif">
+            Row 2 ewrfer
+          </AppText>
+        </BoxView>
+        <BoxView>
+          <AppText F_SIZE={20} F_WEIGHT="600" FONT="sans-serif">
+            Row 3 erver
+          </AppText>
+        </BoxView>
+      </ColView>
     </FlexView>
   );
 }

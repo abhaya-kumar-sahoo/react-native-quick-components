@@ -25,14 +25,21 @@ yarn add react-native-quick-components
 npm install react-native-quick-components
 ```
 
+## Configuration
+The defaultConfig function allows you to define and apply default settings across your components, ensuring consistent styling and behavior throughout your application. You can customize settings like background color, text color, font size and font family.
+```jsx
+defaultConfig({
+  defaultBackgroundColor: 'black', // Sets default background color for components
+  defaultTextColor: 'black',       // Sets default text color for text-based components
+  defaultFontSize: 16,             // Sets default font size for text components
+  // defaultFontFamily: 'Arial',   // Uncomment and define the default font family if needed
+});
+```
+
+
 ## Usage
 
 Import the components you need from `react-native-quick-components` and use them in your React Native application:
-
-## Components
-### AbsoluteBox
-
-A component that renders a box with absolute positioning.
 
 ```jsx
 import * as React from 'react';
@@ -216,16 +223,6 @@ export default function App() {
 - `RowView`: Row layout component, aligns child elements horizontally. Useful for placing elements side by side.
 - `FlexSafeView`: A flexible SafeAreaView component with flex: 1 styling. Ensures content is displayed within safe areas of the screen on iOS devices.
 
-## Configuration
-The defaultConfig function allows you to define and apply default settings across your components, ensuring consistent styling and behavior throughout your application. You can customize settings like background color, text color, font size and font family.
-```jsx
-defaultConfig({
-  defaultBackgroundColor: 'black', // Sets default background color for components
-  defaultTextColor: 'black',       // Sets default text color for text-based components
-  defaultFontSize: 16,             // Sets default font size for text components
-  // defaultFontFamily: 'Arial',   // Uncomment and define the default font family if needed
-});
-```
 
 
 ## Props

@@ -58,20 +58,17 @@ export interface BackgroundProps {
 }
 // Background and Shadow Props
 interface CenterProps {
-  center_me?: ViewStyle['alignSelf']; // background color
-  FullRowCenter?: boolean;
-  FullColumnCenter?: boolean;
-  RowCenterStart?: boolean;
-  RowSpacBtw?: boolean;
-  ColumnSpacBtw?: boolean;
-  ColumnCenterStart?: boolean;
+  alignSelf?: ViewStyle['alignSelf']; // background color]
+  center?: boolean;
+  centerX?: boolean;
+  centerY?: boolean;
 }
 
 // Size Props
 export interface SizeProps {
-  W?: number; // width
-  H?: number; // height
-  FLEX?: number;
+  W?: number | string; // width
+  H?: number | string; // height
+  FLX?: number;
 }
 
 // Combined Text Props
@@ -83,6 +80,11 @@ export interface AppTextProps
     SizeProps {
   children?: React.ReactNode;
   style?: StyleProp<TextStyle>; // style
+  leftComponent?: React.ReactNode;
+  rightComponent?: React.ReactNode;
+  containerStyle?: AppViewProps & {
+    rest?: object;
+  }; // container
 }
 
 // Combined View Props
@@ -119,7 +121,7 @@ export interface ImageStylingProps {
 }
 
 export interface BoxSizeProps {
-  SIZE?: number;
+  SIZE?: number | string;
 }
 
 export interface CustomImageProp
@@ -166,6 +168,7 @@ export type AbsoluteViewProps = TouchableOpacityProps &
     B?: number;
     L?: number;
     R?: number;
+    SIZE?: number | string;
   };
 
 export type AppButtonProps = TouchableOpacityProps &
@@ -174,19 +177,19 @@ export type AppButtonProps = TouchableOpacityProps &
     title?: string;
     C?: ColorSuggestion;
     BG?: ColorSuggestion;
-    center?: boolean;
-    F_SIZE?: number | undefined;
-    disabled?: boolean;
     onPress?: () => void;
     PX?: number | undefined;
     PY?: number | undefined;
     MX?: number | undefined;
     MY?: number | undefined;
-    FONT?: string | undefined;
     W?: number; // width
     H?: number; // height
-    F_WEIGHT?: TextStyle['fontWeight'];
     style?: StyleProp<TouchableOpacityProps>;
+    textStyle?: AppTextProps & {
+      rest?: object;
+    }; // container
+    leftComponent?: React.ReactNode;
+    rightComponent?: React.ReactNode;
   };
 
 export type CustomImageProps = CustomImageProp &
@@ -194,8 +197,22 @@ export type CustomImageProps = CustomImageProp &
     style?: StyleProp<ImageStyle>; // style
   };
 
+export type DividerProps = {
+  HW?: number | string; // width
+  HH?: number | string; // height
+  VW?: number | string; // width
+  VH?: number | string; // height
+  BG?: ColorSuggestion;
+  isVertical?: boolean;
+  BOR?: number;
+  BOC?: number;
+  BOW?: number;
+  MX?: number | string;
+  MY?: number | string;
+};
+
 export type CustomTextProps = TextProps & AppTextProps;
 export type CustomTextInputProps = TextInputProps & AppTextProps;
 export type CustomViewProps = TouchableOpacityProps & AppViewProps;
 export type FlexViewProps = ViewProps & AppViewProps;
-export type BoxProps = CustomBoxProps & AppViewProps & ViewProps;
+export type BoxProps = CustomBoxProps & AppViewProps & TouchableOpacityProps;

@@ -6,14 +6,14 @@ interface NewConfig {
   colorTypes?: object;
 }
 export let config: NewConfig = {
-  defaultTextColor: 'blue',
+  defaultTextColor: 'white',
   defaultBackgroundColor: null,
   defaultFontFamily: null,
   defaultFontSize: 20,
   colorTypes: {},
 };
 
-export const init = (newConfig: NewConfig) => {
+export const defaultConfig = (newConfig: NewConfig) => {
   if (newConfig.defaultTextColor) {
     config.defaultTextColor = newConfig.defaultTextColor;
   }

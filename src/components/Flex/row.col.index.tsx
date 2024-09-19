@@ -1,36 +1,47 @@
 import { TouchableOpacity } from 'react-native';
 import type { RowViewProps } from '../../types/types';
-import { applyCommonStyles } from '../../utils/style.utils';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { styles } from '../../styles';
+import { DefaultColors } from '../../types/colors';
 
 export const RowView: React.FC<RowViewProps> = ({
   children,
-  ALI = 'center',
-  JC = 'space-between',
-  gap = 0,
-  colGap,
-  rowGap,
-  flexWrap = 'wrap',
+  BG,
+  BOC,
+  onPress,
   ...rest
 }) => {
   const { style: restStyle, ...remainingProps } = rest;
+  const colorType = BOC?.split(':')[0] ?? 'red';
+  const colorName = BOC?.split(':')[1] ?? '100';
+  const colorBGType = BG?.split(':')[0] ?? 'red';
+  const colorBGName = BG?.split(':')[1] ?? '100';
+
+  const textStyle = useMemo(() => {
+    return styles({
+      ...(BOC
+        ? {
+            BOC: BOC?.includes(':')
+              ? (DefaultColors as any)[colorType][colorName]
+              : BOC,
+          }
+        : {}),
+      ...(BG
+        ? {
+            BG: BG?.includes(':')
+              ? (DefaultColors as any)[colorBGType][colorBGName]
+              : BG,
+          }
+        : {}),
+      ...rest,
+    }).row;
+  }, [BG, BOC, colorBGName, colorBGType, colorName, colorType, rest]);
+
   return (
     <TouchableOpacity
-      activeOpacity={0.9}
-      style={[
-        styles.row,
-        applyCommonStyles(rest),
-        restStyle,
-        {
-          ...(ALI !== undefined && { alignItems: ALI }),
-          ...(JC !== undefined && { justifyContent: JC }),
-          flexWrap, // Use flexWrap directly
-          ...(gap !== undefined && { gap }), // Conditionally apply gap
-          ...(rowGap !== undefined && { rowGap }), // Conditionally apply rowGap
-          ...(colGap !== undefined && { columnGap: colGap }), // Conditionally apply columnGap
-        },
-      ]}
+      activeOpacity={0.7}
+      disabled={onPress !== undefined ? false : true}
+      style={[textStyle, restStyle]}
       {...remainingProps}
     >
       {children}
@@ -40,31 +51,42 @@ export const RowView: React.FC<RowViewProps> = ({
 
 export const ColView: React.FC<RowViewProps> = ({
   children,
-  ALI = 'center',
-  JC = 'space-between',
-  gap = 0,
-  colGap,
-  rowGap,
-  flexWrap = 'wrap',
+  BG,
+  BOC,
+  onPress,
   ...rest
 }) => {
   const { style: restStyle, ...remainingProps } = rest;
+  const colorType = BOC?.split(':')[0] ?? 'red';
+  const colorName = BOC?.split(':')[1] ?? '100';
+  const colorBGType = BG?.split(':')[0] ?? 'red';
+  const colorBGName = BG?.split(':')[1] ?? '100';
+
+  const textStyle = useMemo(() => {
+    return styles({
+      ...(BOC
+        ? {
+            BOC: BOC?.includes(':')
+              ? (DefaultColors as any)[colorType][colorName]
+              : BOC,
+          }
+        : {}),
+      ...(BG
+        ? {
+            BG: BG?.includes(':')
+              ? (DefaultColors as any)[colorBGType][colorBGName]
+              : BG,
+          }
+        : {}),
+      ...rest,
+    }).column;
+  }, [BG, BOC, colorBGName, colorBGType, colorName, colorType, rest]);
+
   return (
     <TouchableOpacity
-      activeOpacity={0.9}
-      style={[
-        styles.column,
-        applyCommonStyles(rest),
-        restStyle,
-        {
-          ...(ALI !== undefined && { alignItems: ALI }),
-          ...(JC !== undefined && { justifyContent: JC }),
-          flexWrap, // Use flexWrap directly
-          ...(gap !== undefined && { gap }), // Conditionally apply gap
-          ...(rowGap !== undefined && { rowGap }), // Conditionally apply rowGap
-          ...(colGap !== undefined && { columnGap: colGap }), // Conditionally apply columnGap
-        },
-      ]}
+      activeOpacity={0.7}
+      disabled={onPress !== undefined ? false : true}
+      style={[textStyle, restStyle]}
       {...remainingProps}
     >
       {children}

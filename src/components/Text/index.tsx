@@ -32,6 +32,7 @@ export const AppText: React.FC<CustomTextProps> = ({
               : BG,
           }
         : {}),
+
       ...rest,
     }).text;
   }, [BG, C, colorBGName, colorBGType, colorName, colorType, rest]);

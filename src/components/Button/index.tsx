@@ -1,95 +1,113 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import type { AppButtonProps } from '../../types/types';
-import React from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { DefaultColors } from '../../types/colors';
-import { config } from '../config';
+import { styles } from '../../styles';
 
 export const AppButton: React.FC<AppButtonProps> = ({
   title = 'Press',
   C = 'white',
   BG = 'red',
-  PX = 20,
+  BOC,
+  textStyle,
+  leftComponent,
+  rightComponent,
+  BOR = 100,
+  PX = 100,
   PY = 3,
-  MX = undefined,
-  MY = undefined,
-  F_SIZE = 20,
-  W,
-  H,
-  // border
-  BOR = 40,
-  BOW = undefined,
-  BOC = undefined,
-  FONT,
-  F_WEIGHT,
-  center = false,
-
-  ...props
+  ...rest
 }) => {
+  const { style: restStyle, ...remainingProps } = rest;
+  const { style: containerStyleProps, ...remainingTextProps } = textStyle || {};
+
   const colorType = C?.split(':')[0] ?? 'red';
   const colorName = C?.split(':')[1] ?? '100';
+  const colorBOCType = BOC?.split(':')[0] ?? 'red';
+  const colorBOCName = BOC?.split(':')[1] ?? '100';
+  const colorBGType = BG?.split(':')[0] ?? 'red';
+  const colorBGName = BG?.split(':')[1] ?? '100';
 
-  // const color = (DefaultColors as any)[colorType][colorName];
+  const buttonStyle = useMemo(() => {
+    return styles({
+      ...(BOC
+        ? {
+            BOC: BOC?.includes(':')
+              ? (DefaultColors as any)[colorBOCType][colorBOCName]
+              : BOC,
+          }
+        : {}),
+      ...(BG
+        ? {
+            BG: BG?.includes(':')
+              ? (DefaultColors as any)[colorBGType][colorBGName]
+              : BG,
+          }
+        : {}),
+      ...(BOR !== undefined
+        ? {
+            BOR,
+          }
+        : {}),
+      ...(PX !== undefined
+        ? {
+            PX,
+          }
+        : {}),
+      ...(PY !== undefined
+        ? {
+            PY,
+          }
+        : {}),
+
+      ...rest,
+    }).button;
+  }, [
+    BG,
+    BOC,
+    BOR,
+    PX,
+    PY,
+    colorBGName,
+    colorBGType,
+    colorBOCName,
+    colorBOCType,
+    rest,
+  ]);
+
+  const textStyles = useMemo(() => {
+    return styles({
+      ...(C
+        ? {
+            C: C?.includes(':')
+              ? (DefaultColors as any)[colorType][colorName]
+              : C,
+          }
+        : {}),
+
+      ...textStyle,
+    }).text;
+  }, [C, colorName, colorType, textStyle]);
 
   return (
     <TouchableOpacity
-      {...props}
+      {...remainingProps}
       activeOpacity={0.6}
-      style={[
-        BG
-          ? {
-              backgroundColor: BG.includes(':')
-                ? (DefaultColors as any)[colorType][colorName]
-                : BG,
-            }
-          : {},
-
-        BOR ? { borderRadius: BOR } : {},
-        {
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'row',
-          alignSelf: center ? 'center' : 'baseline',
-        },
-        // size
-        W ? { width: W } : {},
-        H ? { height: H } : {},
-        //border
-        BOR ? { borderRadius: BOR } : {},
-        BOC
-          ? {
-              borderColor: BG.includes(':')
-                ? (DefaultColors as any)[colorType][colorName]
-                : BG,
-            }
-          : {},
-        BOW ? { borderWidth: BOW } : {},
-        // margin
-
-        MX ? { marginHorizontal: MX } : {},
-        MY ? { margin: MY } : {},
-
-        // padding
-
-        PX ? { paddingHorizontal: PX } : {},
-        PY ? { paddingBottom: PY + 3, paddingTop: PY } : {},
-      ]}
+      style={[buttonStyle, restStyle]}
+      {...remainingProps}
     >
-      <Text
-        style={[
-          F_SIZE ? { fontSize: F_SIZE } : {},
-          C
-            ? {
-                color: C.includes(':')
-                  ? (DefaultColors as any)[colorType][colorName]
-                  : C,
-              }
-            : { color: config.defaultTextColor },
-          FONT ? { fontFamily: FONT } : {},
-          F_WEIGHT ? { fontWeight: F_WEIGHT } : {},
-        ]}
-      >
+      <Fragment>
+        {leftComponent && (
+          <View style={{ overflow: 'hidden' }}>{leftComponent}</View>
+        )}
+      </Fragment>
+      <Text style={[textStyles, containerStyleProps]} {...remainingTextProps}>
         {title}
       </Text>
+      <Fragment>
+        {rightComponent && (
+          <View style={{ overflow: 'hidden' }}>{rightComponent}</View>
+        )}
+      </Fragment>
     </TouchableOpacity>
   );
 };

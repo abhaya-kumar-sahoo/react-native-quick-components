@@ -1,79 +1,95 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-// Common padding and margin styles with conditional spreading
-const commonPadMadStyles = (value?: any) => ({
-  ...(value?.P ? { padding: value.P } : {}),
-  ...(value?.PL ? { paddingLeft: value.PL } : {}),
-  ...(value?.PR ? { paddingRight: value.PR } : {}),
-  ...(value?.PT ? { paddingTop: value.PT } : {}),
-  ...(value?.PB ? { paddingBottom: value.PB } : {}),
-  ...(value?.PX ? { paddingHorizontal: value.PX } : {}),
-  ...(value?.PY ? { paddingVertical: value.PY } : {}),
-  ...(value?.ML ? { marginLeft: value.ML } : {}),
-  ...(value?.MT ? { marginTop: value.MT } : {}),
-  ...(value?.MB ? { marginBottom: value.MB } : {}),
-  ...(value?.MX ? { marginHorizontal: value.MX } : {}),
-  ...(value?.MY ? { marginVertical: value.MY } : {}),
-});
+import {
+  commonBackGroundColor,
+  commonBorder,
+  commonPadMadStyles,
+  commonSizes,
+  commonTextStyles,
+  commonWidthHeight,
+  centerY,
+  centerX,
+  center,
+} from './style.component';
+const { width } = Dimensions.get('window');
 
-// Common background color style
-const commonBackGroundColor = (value?: any) => ({
-  ...(value?.BG && { backgroundColor: value?.BG }),
-});
-
-// Common border styles with conditional spreading
-const commonBorderRadius = (value?: any) => ({
-  ...(value?.BOR ? { borderRadius: value.BOR } : {}),
-  ...(value?.BOW ? { borderWidth: value.BOW } : {}),
-  ...(value?.BOC ? { borderColor: value.BOC } : {}),
-  ...(value?.BTRL ? { borderTopLeftRadius: value.BTRL } : {}),
-  ...(value?.BTRR ? { borderTopRightRadius: value.BTRR } : {}),
-  ...(value?.BTLR ? { borderBottomLeftRadius: value.BTLR } : {}),
-  ...(value?.BTBR ? { borderBottomRightRadius: value.BTBR } : {}),
-});
-
-// Common size styles with conditional spreading
-const commonSizes = (value?: any) => ({
-  ...(value?.W ? { width: value.W } : {}),
-  ...(value?.H ? { height: value.H } : {}),
-  ...(value?.MIN_W ? { minWidth: value.MIN_W } : {}),
-  ...(value?.MIN_H ? { minHeight: value.MIN_H } : {}),
-  ...(value?.MAX_W ? { maxWidth: value.MAX_W } : {}),
-  ...(value?.MAX_H ? { maxHeight: value.MAX_H } : {}),
-  ...(value?.ASPECT_RATIO ? { aspectRatio: value.ASPECT_RATIO } : {}),
-});
-
-// Common width and height styles
-const commonWidthHeight = (value?: any) => ({
-  ...(value?.SIZE ? { width: value?.SIZE, height: value?.SIZE } : {}),
-});
 export const styles = (value: any) =>
   StyleSheet.create({
     row: {
       flexDirection: 'row',
+      ...(value?.ALI !== undefined ? { alignItems: value?.ALI } : {}),
+      ...(value?.JC !== undefined ? { justifyContent: value?.JC } : {}),
+      flexWrap: value?.flexWrap, // Use flexWrap directly
+      ...(value?.gap !== undefined ? { gap: value?.gap } : {}), // Conditionally apply gap
+      ...(value?.rowGap !== undefined ? { rowGap: value?.rowGap } : {}), // Conditionally apply rowGap
+      ...(value?.colGap !== undefined ? { columnGap: value?.colGap } : {}), // Conditionally apply columnGap
+      ...commonBackGroundColor(value),
+      ...commonPadMadStyles(value),
+      ...commonBorder(value),
+      ...commonSizes(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
     },
     column: {
       flexDirection: 'column',
-    },
-    rowCenter: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'row',
-    },
-    columnCenter: {
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    text: {
-      ...(value?.C ? { color: value.C } : {}),
-      ...(value?.F_SIZE ? { fontSize: value.F_SIZE } : {}),
-      ...(value?.F_WEIGHT ? { fontWeight: value.F_WEIGHT } : {}),
-      ...(value?.FONT ? { fontFamily: value.FONT } : {}),
-      ...(value?.ALINE ? { textAlign: value.ALINE } : {}),
-      ...(value?.LINE_H ? { lineHeight: value.LINE_H } : {}),
+      ...(value?.ALI !== undefined ? { alignItems: value?.ALI } : {}),
+      ...(value?.JC !== undefined ? { justifyContent: value?.JC } : {}),
+      flexWrap: value?.flexWrap, // Use flexWrap directly
+      ...(value?.gap !== undefined ? { gap: value?.gap } : {}), // Conditionally apply gap
+      ...(value?.rowGap !== undefined ? { rowGap: value?.rowGap } : {}), // Conditionally apply rowGap
+      ...(value?.colGap !== undefined ? { columnGap: value?.colGap } : {}), // Conditionally apply columnGap
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
+      ...commonBorder(value),
       ...commonSizes(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
+    },
+
+    container: {
+      ...commonBackGroundColor(value),
+      ...commonPadMadStyles(value),
+      ...commonBorder(value),
+      ...commonSizes(value),
+      alignSelf: 'flex-start',
+      overflow: 'hidden',
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
+      // borderRadius: 20,
+    },
+    view: {
+      ...(value?.FLX !== undefined ? { flex: value.FLX } : {}),
+      ...commonBackGroundColor(value),
+      ...commonPadMadStyles(value),
+      ...commonBorder(value),
+      ...commonSizes(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
+    },
+    flex_view: {
+      ...commonBackGroundColor(value),
+      ...commonPadMadStyles(value),
+      ...commonBorder(value),
+      ...commonSizes(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
+      flex: 1,
+    },
+    text: {
+      ...commonTextStyles(value),
+    },
+
+    textInput: {
+      ...commonTextStyles(value),
+      ...commonBorder(value),
+      ...commonSizes(value),
+
+      // flexShrink: 1,
     },
     box: {
       flexBasis: value?.flexBasis,
@@ -82,10 +98,12 @@ export const styles = (value: any) =>
       flexWrap: value?.flexWrap,
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
-      ...commonBorderRadius(value),
-      //...commonShadow(value),
+      ...commonBorder(value),
       ...commonSizes(value),
       ...commonWidthHeight(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
     },
     circle: {
       ...commonWidthHeight(value),
@@ -94,8 +112,65 @@ export const styles = (value: any) =>
       borderColor: value?.BOC,
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
-
+      overflow: 'hidden',
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
       // ...commonSizes(value),
       //...commonWidthHeight(value),
+    },
+    image: {
+      ...commonBackGroundColor(value),
+      ...commonPadMadStyles(value),
+      ...commonSizes(value),
+      ...commonWidthHeight(value),
+      ...commonBorder(value),
+    },
+    divider: {
+      ...(value?.isVertical !== undefined
+        ? { width: value?.HW ?? 1 }
+        : { width: value?.VW ?? width * 0.09 }),
+      ...(value?.isVertical !== undefined
+        ? { height: value?.HH ?? 30 }
+        : { height: value?.VH ?? 1 }),
+      backgroundColor: value?.BG,
+      marginVertical: value?.MY,
+      marginHorizontal: value?.MX,
+    },
+    button: {
+      ...(value?.H !== undefined ? { height: value?.H ?? 60 } : {}),
+      ...(value?.W !== undefined ? { width: value?.W ?? '70%' } : {}),
+      ...commonPadMadStyles(value),
+      ...commonSizes(value),
+      ...commonWidthHeight(value),
+      ...commonBorder(value),
+      ...commonBackGroundColor(value),
+      alignSelf: 'flex-start',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    rowStyle: {
+      flexDirection: 'row',
+      justifyContent: value !== undefined ? 'space-around' : 'flex-start',
+      alignItems: 'center',
+    },
+    absolute: {
+      position: 'absolute',
+      ...(value?.T !== undefined ? { top: value?.T } : {}),
+      ...(value?.L !== undefined ? { left: value?.L } : {}),
+      ...(value?.R !== undefined ? { right: value?.R } : {}),
+      ...(value?.B !== undefined ? { bottom: value?.B } : {}),
+      ...(value?.zIndex !== undefined
+        ? { zIndex: value?.zIndex }
+        : { zIndex: 1 }),
+      ...commonPadMadStyles(value),
+      ...commonSizes(value),
+      ...commonWidthHeight(value),
+      ...commonBorder(value),
+      ...commonBackGroundColor(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
     },
   });

@@ -224,6 +224,79 @@ export default function App() {
 - `FlexSafeView`: A flexible SafeAreaView component with flex: 1 styling. Ensures content is displayed within safe areas of the screen on iOS devices.
 
 
+## Shorthand CSS Properties
+
+### 1. **Color (Text and Border)**
+- `C`: Color suggestion for text or border.
+- `BG`: Background color.
+- `BOC`: Border color.
+
+### 2. **Font and Text Styling**
+- `FONT`: Font family.
+- `F_SIZE`: Font size.
+- `ALINE`: Text alignment (align).
+- `LINE_H`: Line height.
+- `F_WEIGHT`: Font weight.
+
+### 3. **Padding (Spacing)**
+- `P`: Padding.
+- `PL`: Padding left.
+- `PR`: Padding right.
+- `PT`: Padding top.
+- `PB`: Padding bottom.
+- `PX`: Padding horizontal.
+- `PY`: Padding vertical.
+
+### 4. **Margin (Spacing)**
+- `M`: Margin.
+- `ML`: Margin left.
+- `MB`: Margin bottom.
+- `MT`: Margin top.
+- `MR`: Margin right.
+- `MX`: Margin horizontal.
+- `MY`: Margin vertical.
+
+### 5. **Border**
+- `BOR`: Border radius.
+- `BOW`: Border width.
+
+### 6. **Size**
+- `W`: Width.
+- `H`: Height.
+- `SIZE`: Box size (width and height combined).
+- `FLX`: Flex value.
+
+### 7. **Positioning (For Absolute or Relative Positioning)**
+- `T`: Top.
+- `B`: Bottom.
+- `L`: Left.
+- `R`: Right.
+
+### 8. **Justify and Align**
+- `JC`: Justify content.
+- `ALI`: Align items.
+
+### 9. **Centering**
+- `center`: Center both horizontally and vertically.
+- `centerX`: Center horizontally.
+- `centerY`: Center vertically.
+- `alignSelf`: Align self.
+
+### 10. **Flexbox**
+- `flexBasis`: Defines the flex basis.
+- `flexGrow`: Defines the flex grow.
+- `flexShrink`: Defines the flex shrink.
+- `flexWrap`: Flex wrapping.
+- `gap`: Gap between items.
+- `rowGap`: Gap between rows.
+- `colGap`: Gap between columns.
+
+### 11. **Divider Properties**
+- `HW`: Divider width (used for horizontal dividers).
+- `HH`: Divider height (used for horizontal dividers).
+- `VW`: Vertical width (used for vertical dividers).
+- `VH`: Vertical height (used for vertical dividers).
+
 
 ## Props
 

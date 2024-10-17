@@ -1,5 +1,6 @@
 import type { ViewStyle } from 'react-native';
-import { config } from '../components/config/index';
+import { config } from '../config/index';
+import { DefaultColors } from '../types/colors';
 
 const commonPadMadStyles = (value?: any) => ({
   ...(value?.P !== undefined ? { padding: value.P } : {}),
@@ -16,10 +17,15 @@ const commonPadMadStyles = (value?: any) => ({
   ...(value?.MY !== undefined ? { marginVertical: value.MY } : {}),
 });
 
+const colorType = (C: string) => C?.split(':')[0] ?? 'red';
+const colorName = (C: string) => C?.split(':')[1] ?? '100';
+const color = (C: string) =>
+  C.includes(':') ? (DefaultColors as any)[colorType(C)][colorName(C)] : C;
+
 // Common background color style
 const commonBackGroundColor = (value?: any) => ({
   ...(value?.BG
-    ? { backgroundColor: value?.BG }
+    ? { backgroundColor: color(value?.BG) }
     : config.defaultBackgroundColor
       ? { backgroundColor: config.defaultBackgroundColor }
       : {}),
@@ -29,7 +35,7 @@ const commonBackGroundColor = (value?: any) => ({
 const commonBorder = (value?: any) => ({
   ...(value?.BOR !== undefined ? { borderRadius: value.BOR } : {}),
   ...(value?.BOW !== undefined ? { borderWidth: value.BOW } : {}),
-  ...(value?.BOC !== undefined ? { borderColor: value.BOC } : {}),
+  ...(value?.BOC !== undefined ? { borderColor: color(value.BOC) } : {}),
   ...(value?.BTRL !== undefined ? { borderTopLeftRadius: value.BTRL } : {}),
   ...(value?.BTRR !== undefined ? { borderTopRightRadius: value.BTRR } : {}),
   ...(value?.BTLR !== undefined ? { borderBottomLeftRadius: value.BTLR } : {}),
@@ -51,7 +57,7 @@ const commonSizes = (value?: any) => ({
 
 const commonTextStyles = (value?: any) => ({
   ...(value?.C !== undefined
-    ? { color: value.C }
+    ? { color: color(value?.C) }
     : config.defaultTextColor
       ? { color: config.defaultTextColor }
       : {}),

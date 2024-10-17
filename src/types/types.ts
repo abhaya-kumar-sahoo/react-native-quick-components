@@ -82,7 +82,7 @@ export interface AppTextProps
   style?: StyleProp<TextStyle>; // style
   leftComponent?: React.ReactNode;
   rightComponent?: React.ReactNode;
-  containerStyle?: AppViewProps & {
+  inputBoxStyle?: AppViewProps & {
     rest?: object;
   }; // container
 }

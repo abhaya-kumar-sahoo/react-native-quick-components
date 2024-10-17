@@ -17,8 +17,12 @@ export const styles = (value: any) =>
   StyleSheet.create({
     row: {
       flexDirection: 'row',
-      ...(value?.ALI !== undefined ? { alignItems: value?.ALI } : {}),
-      ...(value?.JC !== undefined ? { justifyContent: value?.JC } : {}),
+      ...(value?.ALI !== undefined
+        ? { alignItems: value?.ALI }
+        : { alignItems: 'center' }),
+      ...(value?.JC !== undefined
+        ? { justifyContent: value?.JC }
+        : { justifyContent: 'space-between' }),
       flexWrap: value?.flexWrap, // Use flexWrap directly
       ...(value?.gap !== undefined ? { gap: value?.gap } : {}), // Conditionally apply gap
       ...(value?.rowGap !== undefined ? { rowGap: value?.rowGap } : {}), // Conditionally apply rowGap
@@ -33,8 +37,12 @@ export const styles = (value: any) =>
     },
     column: {
       flexDirection: 'column',
-      ...(value?.ALI !== undefined ? { alignItems: value?.ALI } : {}),
-      ...(value?.JC !== undefined ? { justifyContent: value?.JC } : {}),
+      ...(value?.ALI !== undefined
+        ? { alignItems: value?.ALI }
+        : { alignItems: 'center' }),
+      ...(value?.JC !== undefined
+        ? { justifyContent: value?.JC }
+        : { justifyContent: 'space-between' }),
       flexWrap: value?.flexWrap, // Use flexWrap directly
       ...(value?.gap !== undefined ? { gap: value?.gap } : {}), // Conditionally apply gap
       ...(value?.rowGap !== undefined ? { rowGap: value?.rowGap } : {}), // Conditionally apply rowGap
@@ -88,8 +96,7 @@ export const styles = (value: any) =>
       ...commonTextStyles(value),
       ...commonBorder(value),
       ...commonSizes(value),
-
-      // flexShrink: 1,
+      ...commonBackGroundColor(value),
     },
     box: {
       flexBasis: value?.flexBasis,

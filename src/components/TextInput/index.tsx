@@ -7,16 +7,16 @@ import { styles } from '../../styles';
 export const AppTextInput: React.FC<CustomTextInputProps> = ({
   leftComponent,
   rightComponent,
-  inputBoxStyle,
+  styleContainer,
   ...rest
 }) => {
   const { style: restStyle, ...remainingProps } = rest;
   const { style: containerStyleProps, ...remainingContainerProps } =
-    inputBoxStyle || {};
+    styleContainer || {};
 
   // Simplifying the usage of styles
   const inputBoxStyles = styles(rest).textInput;
-  const containerBoxStyles = styles(inputBoxStyle).container;
+  const containerBoxStyles = styles(styleContainer).container;
 
   return (
     <View

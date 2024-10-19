@@ -50,6 +50,10 @@ export interface BorderProps {
   BOR?: number; // border radius
   BOW?: number;
   BOC?: ColorSuggestion; // border color
+  // BTRL?: number; // border top left radius
+  // BTRR?: number; // border top right radius
+  // BTBL?: number; // border bottom left radius
+  // BTBR?: number; // border bottom right radius
 }
 
 // Background and Shadow Props
@@ -69,6 +73,10 @@ export interface SizeProps {
   W?: number | string; // width
   H?: number | string; // height
   FLX?: number;
+  MIN_W?: number | string; //
+  MIN_H?: number | string; //
+  MAX_W?: number | string; //
+  MAX_H?: number | string; //
 }
 
 // Combined Text Props
@@ -82,7 +90,7 @@ export interface AppTextProps
   style?: StyleProp<TextStyle>; // style
   leftComponent?: React.ReactNode;
   rightComponent?: React.ReactNode;
-  inputBoxStyle?: AppViewProps & {
+  styleContainer?: AppViewProps & {
     rest?: object;
   }; // container
 }
@@ -148,7 +156,8 @@ export type CustomCircleProps = TouchableOpacityProps &
 export type RowViewProps = TouchableOpacityProps &
   BorderProps &
   CenterProps &
-  SpacingProps & {
+  SpacingProps &
+  SizeProps & {
     children?: ReactNode;
     BG?: ColorSuggestion;
     JC?: ViewStyle['justifyContent'];
@@ -202,7 +211,7 @@ export type DividerProps = {
   HH?: number | string; // height
   VW?: number | string; // width
   VH?: number | string; // height
-  BG?: ColorSuggestion;
+  C?: ColorSuggestion;
   isVertical?: boolean;
   BOR?: number;
   BOC?: number;

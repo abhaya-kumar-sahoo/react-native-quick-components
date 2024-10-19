@@ -1,18 +1,22 @@
+import type { MobilePhone } from '../types/phones';
+
 interface NewConfig {
   defaultTextColor?: string;
   defaultBackgroundColor?: string | null;
   defaultFontFamily?: string | null;
-  defaultFontSize?: string | number;
-  colorTypes?: object;
-  setAppSize?: { width: number; height: number } | null;
+  defaultFontSize?: number;
+  defaultAppSize?: MobilePhone;
+  setCustomAppSize?: { width: number; height: number } | null;
+  enableResponsive?: boolean;
 }
 export let config: NewConfig = {
   defaultTextColor: 'white',
   defaultBackgroundColor: null,
   defaultFontFamily: null,
   defaultFontSize: 20,
-  colorTypes: {},
-  setAppSize: null,
+  defaultAppSize: 'iPhone X',
+  setCustomAppSize: null,
+  enableResponsive: true,
 };
 
 export const defaultConfig = (newConfig: NewConfig) => {
@@ -28,14 +32,11 @@ export const defaultConfig = (newConfig: NewConfig) => {
   if (newConfig.defaultFontSize) {
     config.defaultFontSize = newConfig.defaultFontSize;
   }
-  if (newConfig.colorTypes) {
-    config.colorTypes = newConfig.colorTypes;
+
+  if (newConfig?.defaultAppSize) {
+    config.defaultAppSize = newConfig.defaultAppSize;
   }
-  if (
-    newConfig?.setAppSize &&
-    typeof newConfig?.setAppSize?.width === 'number' &&
-    typeof newConfig?.setAppSize?.height === 'number'
-  ) {
-    config.setAppSize = newConfig.setAppSize;
+  if (newConfig?.setCustomAppSize) {
+    config.setCustomAppSize = newConfig.setCustomAppSize;
   }
 };

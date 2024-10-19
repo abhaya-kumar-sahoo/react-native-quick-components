@@ -1,3 +1,4 @@
+// Components
 import { AppText } from './components/Text';
 import { BoxView } from './components/Box';
 import { AppImage } from './components/Image';
@@ -9,8 +10,12 @@ import { ColView, RowView } from './components/Flex/row.col.index';
 import { AbsoluteBox } from './components/Absolute';
 import { FlexView } from './components/Flex/flex.index';
 import { FlexSafeView } from './components/Flex/flex.safearea.index';
-import { defaultConfig } from './config';
 import { Divider } from './components/Divider';
+
+// Config
+import { defaultConfig } from './config';
+
+// Platform Utilities
 import {
   isIOS,
   isAndroid,
@@ -23,12 +28,16 @@ import {
   isLandscape,
   isPortrait,
 } from './utils/platform';
+
+// Size Utilities
 import {
   scale,
   moderateScale,
   moderateVerticalScale,
   verticalScale,
 } from './utils/size';
+
+// Export Components
 export {
   AppText,
   BoxView,
@@ -41,9 +50,15 @@ export {
   RowView,
   AbsoluteBox,
   FlexView,
-  Divider,
   FlexSafeView,
-  defaultConfig,
+  Divider,
+};
+
+// Export Config
+export { defaultConfig };
+
+// Export Platform Utilities
+export {
   isIOS,
   isAndroid,
   isMacOs,
@@ -54,8 +69,7 @@ export {
   SCREEN_W,
   isLandscape,
   isPortrait,
-  scale,
-  moderateScale,
-  moderateVerticalScale,
-  verticalScale,
 };
+
+// Export Size Utilities
+export { scale, moderateScale, moderateVerticalScale, verticalScale };

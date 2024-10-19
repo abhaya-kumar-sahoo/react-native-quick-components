@@ -1,6 +1,7 @@
 import type { ViewStyle } from 'react-native';
 import { config } from '../config/index';
 import { DefaultColors } from '../types/colors';
+import { moderateScale, scale, verticalScale } from '../utils/size';
 
 const commonPadMadStyles = (value?: any) => ({
   ...(value?.P !== undefined ? { padding: value.P } : {}),
@@ -23,11 +24,15 @@ const color = (C: string) =>
   C.includes(':') ? (DefaultColors as any)[colorType(C)][colorName(C)] : C;
 
 // Common background color style
-const commonBackGroundColor = (value?: any) => ({
+const commonBackGroundColor = (value?: any, enabled = false) => ({
   ...(value?.BG
     ? { backgroundColor: color(value?.BG) }
     : config.defaultBackgroundColor
-      ? { backgroundColor: config.defaultBackgroundColor }
+      ? {
+          backgroundColor: enabled
+            ? config.defaultBackgroundColor
+            : 'transparent',
+        }
       : {}),
 });
 
@@ -44,12 +49,40 @@ const commonBorder = (value?: any) => ({
 
 // Common size styles with conditional spreading
 const commonSizes = (value?: any) => ({
-  ...(value?.W !== undefined ? { width: value.W } : {}),
-  ...(value?.H !== undefined ? { height: value.H } : {}),
-  ...(value?.MIN_W !== undefined ? { minWidth: value.MIN_W } : {}),
-  ...(value?.MIN_H !== undefined ? { minHeight: value.MIN_H } : {}),
-  ...(value?.MAX_W !== undefined ? { maxWidth: value.MAX_W } : {}),
-  ...(value?.MAX_H !== undefined ? { maxHeight: value.MAX_H } : {}),
+  ...(value?.W !== undefined
+    ? { width: config.enableResponsive ? moderateScale(value.W) : value.W }
+    : {}),
+  ...(value?.H !== undefined
+    ? { height: config.enableResponsive ? verticalScale(value.H) : value.H }
+    : {}),
+  ...(value?.MIN_W !== undefined
+    ? {
+        minWidth: config.enableResponsive
+          ? moderateScale(value.MIN_W)
+          : value.MIN_W,
+      }
+    : {}),
+  ...(value?.MIN_H !== undefined
+    ? {
+        minHeight: config.enableResponsive
+          ? verticalScale(value.MIN_H)
+          : value.MIN_H,
+      }
+    : {}),
+  ...(value?.MAX_W !== undefined
+    ? {
+        maxWidth: config.enableResponsive
+          ? moderateScale(value.MAX_W)
+          : value.MAX_W,
+      }
+    : {}),
+  ...(value?.MAX_H !== undefined
+    ? {
+        maxHeight: config.enableResponsive
+          ? verticalScale(value.MAX_H)
+          : value.MAX_H,
+      }
+    : {}),
   ...(value?.ASPECT_RATIO !== undefined
     ? { aspectRatio: value.ASPECT_RATIO }
     : {}),
@@ -62,7 +95,7 @@ const commonTextStyles = (value?: any) => ({
       ? { color: config.defaultTextColor }
       : {}),
   ...(value?.F_SIZE !== undefined
-    ? { fontSize: value.F_SIZE }
+    ? { fontSize: scale(value.F_SIZE) }
     : config.defaultFontSize
       ? { fontSize: config.defaultFontSize }
       : {}),

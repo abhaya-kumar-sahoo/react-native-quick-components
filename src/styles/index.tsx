@@ -23,6 +23,8 @@ export const styles = (value: any) =>
       ...(value?.JC !== undefined
         ? { justifyContent: value?.JC }
         : { justifyContent: 'space-between' }),
+      ...(value?.FLX !== undefined ? { flex: value.FLX } : {}),
+
       flexWrap: value?.flexWrap, // Use flexWrap directly
       ...(value?.gap !== undefined ? { gap: value?.gap } : {}), // Conditionally apply gap
       ...(value?.rowGap !== undefined ? { rowGap: value?.rowGap } : {}), // Conditionally apply rowGap
@@ -43,6 +45,8 @@ export const styles = (value: any) =>
       ...(value?.JC !== undefined
         ? { justifyContent: value?.JC }
         : { justifyContent: 'space-between' }),
+      ...(value?.FLX !== undefined ? { flex: value.FLX } : {}),
+
       flexWrap: value?.flexWrap, // Use flexWrap directly
       ...(value?.gap !== undefined ? { gap: value?.gap } : {}), // Conditionally apply gap
       ...(value?.rowGap !== undefined ? { rowGap: value?.rowGap } : {}), // Conditionally apply rowGap
@@ -70,7 +74,7 @@ export const styles = (value: any) =>
     },
     view: {
       ...(value?.FLX !== undefined ? { flex: value.FLX } : {}),
-      ...commonBackGroundColor(value),
+      ...commonBackGroundColor(value, true),
       ...commonPadMadStyles(value),
       ...commonBorder(value),
       ...commonSizes(value),
@@ -79,7 +83,7 @@ export const styles = (value: any) =>
       ...center(value),
     },
     flex_view: {
-      ...commonBackGroundColor(value),
+      ...commonBackGroundColor(value, true),
       ...commonPadMadStyles(value),
       ...commonBorder(value),
       ...commonSizes(value),
@@ -103,6 +107,8 @@ export const styles = (value: any) =>
       flexGrow: value?.flexGrow,
       flexShrink: value?.flexShrink,
       flexWrap: value?.flexWrap,
+      ...(value?.FLX !== undefined ? { flex: value.FLX } : {}),
+
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
       ...commonBorder(value),
@@ -164,6 +170,7 @@ export const styles = (value: any) =>
     },
     absolute: {
       position: 'absolute',
+      ...(value?.FLX !== undefined ? { flex: value.FLX } : {}),
       ...(value?.T !== undefined ? { top: value?.T } : {}),
       ...(value?.L !== undefined ? { left: value?.L } : {}),
       ...(value?.R !== undefined ? { right: value?.R } : {}),

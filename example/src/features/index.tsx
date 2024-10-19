@@ -14,16 +14,16 @@ import {
   RowView,
   defaultConfig,
 } from 'react-native-quick-components';
-defaultConfig({
-  defaultBackgroundColor: 'black',
-  defaultTextColor: 'black',
-  defaultFontSize: 16,
-  // defaultFontFamily: 'Arial',
-});
 
 export default function Features() {
   const [first, setFirst] = React.useState('');
-
+  React.useLayoutEffect(() => {
+    defaultConfig({
+      defaultBackgroundColor: 'black',
+      defaultTextColor: 'white',
+      defaultFontSize: 16,
+    });
+  }, []);
   return (
     <FlexView>
       <ScrollView>

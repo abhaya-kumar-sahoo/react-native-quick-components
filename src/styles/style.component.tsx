@@ -4,18 +4,93 @@ import { DefaultColors } from '../types/colors';
 import { moderateScale, scale, verticalScale } from '../utils/size';
 
 const commonPadMadStyles = (value?: any) => ({
-  ...(value?.P !== undefined ? { padding: value.P } : {}),
-  ...(value?.PL !== undefined ? { paddingLeft: value.PL } : {}),
-  ...(value?.PR !== undefined ? { paddingRight: value.PR } : {}),
-  ...(value?.PT !== undefined ? { paddingTop: value.PT } : {}),
-  ...(value?.PB !== undefined ? { paddingBottom: value.PB } : {}),
-  ...(value?.PX !== undefined ? { paddingHorizontal: value.PX } : {}),
-  ...(value?.PY !== undefined ? { paddingVertical: value.PY } : {}),
-  ...(value?.ML !== undefined ? { marginLeft: value.ML } : {}),
-  ...(value?.MT !== undefined ? { marginTop: value.MT } : {}),
-  ...(value?.MB !== undefined ? { marginBottom: value.MB } : {}),
-  ...(value?.MX !== undefined ? { marginHorizontal: value.MX } : {}),
-  ...(value?.MY !== undefined ? { marginVertical: value.MY } : {}),
+  ...(value?.P !== undefined
+    ? {
+        padding: config.enableResponsive ? moderateScale(value.P) : value.P,
+      }
+    : {}),
+  ...(value?.PL !== undefined
+    ? {
+        paddingLeft: config.enableResponsive
+          ? moderateScale(value.PL)
+          : value.PL,
+      }
+    : {}),
+  ...(value?.PR !== undefined
+    ? {
+        paddingRight: config.enableResponsive
+          ? moderateScale(value.PR)
+          : value.PR,
+      }
+    : {}),
+  ...(value?.PT !== undefined
+    ? {
+        paddingTop: config.enableResponsive
+          ? verticalScale(value.PT)
+          : value.PT,
+      }
+    : {}),
+  ...(value?.PB !== undefined
+    ? {
+        paddingBottom: config.enableResponsive
+          ? verticalScale(value.PB)
+          : value.PB,
+      }
+    : {}),
+  ...(value?.PX !== undefined
+    ? {
+        paddingHorizontal: config.enableResponsive
+          ? moderateScale(value.PX)
+          : value.PX,
+      }
+    : {}),
+  ...(value?.PY !== undefined
+    ? {
+        paddingVertical: config.enableResponsive
+          ? verticalScale(value.PY)
+          : value.PY,
+      }
+    : {}),
+  ...(value?.ML !== undefined
+    ? {
+        marginLeft: config.enableResponsive
+          ? moderateScale(value.ML)
+          : value.ML,
+      }
+    : {}),
+  ...(value?.MR !== undefined
+    ? {
+        marginRight: config.enableResponsive
+          ? moderateScale(value.MR)
+          : value.MR,
+      }
+    : {}),
+  ...(value?.MT !== undefined
+    ? {
+        marginTop: config.enableResponsive ? verticalScale(value.MT) : value.MT,
+      }
+    : {}),
+  ...(value?.MB !== undefined
+    ? {
+        marginBottom: config.enableResponsive
+          ? verticalScale(value.MB)
+          : value.MB,
+      }
+    : {}),
+  ...(value?.MX !== undefined
+    ? {
+        marginHorizontal: config.enableResponsive
+          ? moderateScale(value.MX)
+          : value.MX,
+      }
+    : {}),
+  ...(value?.MY !== undefined
+    ? {
+        marginVertical: config.enableResponsive
+          ? verticalScale(value.MY)
+          : value.MY,
+      }
+    : {}),
 });
 
 const colorType = (C: string) => C?.split(':')[0] ?? 'red';
@@ -115,7 +190,14 @@ const commonTextStyles = (value?: any) => ({
 // Common width and height styles
 const commonWidthHeight = (value?: any) => ({
   ...(value?.SIZE !== undefined
-    ? { width: value?.SIZE, height: value?.SIZE }
+    ? {
+        width: config.enableResponsive
+          ? moderateScale(value?.SIZE)
+          : value?.SIZE,
+        height: config.enableResponsive
+          ? moderateScale(value?.SIZE)
+          : value?.SIZE,
+      }
     : {}),
 });
 

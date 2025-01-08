@@ -11,9 +11,11 @@ import { AbsoluteBox } from './components/Absolute';
 import { FlexView } from './components/Flex/flex.index';
 import { FlexSafeView } from './components/Flex/flex.safearea.index';
 import { Divider } from './components/Divider';
-
+import TextInputBox from './components/TextInput/PasswordInput';
+import { VertSpace, HorizSpace } from './utils';
 // Config
 import { defaultConfig } from './config';
+import AppModal from './components/Modals/index';
 
 // Platform Utilities
 import {
@@ -52,6 +54,10 @@ export {
   FlexView,
   FlexSafeView,
   Divider,
+  TextInputBox,
+  VertSpace,
+  HorizSpace,
+  AppModal,
 };
 
 // Export Config

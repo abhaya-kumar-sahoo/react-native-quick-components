@@ -5,30 +5,30 @@ import type { CustomTextInputProps } from '../../types/types';
 import { styles } from '../../styles';
 
 export const AppTextInput: React.FC<CustomTextInputProps> = ({
-  leftComponent,
-  rightComponent,
-  styleContainer,
+  _leftComponent,
+  _rightComponent,
+  _styleContainer,
   ...rest
 }) => {
   const { style: restStyle, ...remainingProps } = rest;
   const { style: containerStyleProps, ...remainingContainerProps } =
-    styleContainer || {};
+    _styleContainer || {};
 
   // Simplifying the usage of styles
   const inputBoxStyles = styles(rest).textInput;
-  const containerBoxStyles = styles(styleContainer).container;
+  const containerBoxStyles = styles(_styleContainer).container;
 
   return (
     <View
       style={[containerBoxStyles, containerStyleProps, styles(true).rowStyle]}
       {...remainingContainerProps}
     >
-      {leftComponent && (
-        <View style={{ overflow: 'hidden' }}>{leftComponent}</View>
+      {_leftComponent && (
+        <View style={{ overflow: 'hidden' }}>{_leftComponent}</View>
       )}
       <TextInput style={[inputBoxStyles, restStyle]} {...remainingProps} />
-      {rightComponent && (
-        <View style={{ overflow: 'hidden' }}>{rightComponent}</View>
+      {_rightComponent && (
+        <View style={{ overflow: 'hidden' }}>{_rightComponent}</View>
       )}
     </View>
   );

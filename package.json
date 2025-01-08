@@ -155,5 +155,9 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "react-native-heroicons": "^4.0.0",
+    "react-native-svg": "^15.10.1"
   }
 }

@@ -35,7 +35,6 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
     value,
     placeholder,
     placeholderTextColor = '#C5C5C5',
-
     _alertType,
     _iconColor = '#f3f3f3',
     _hint,
@@ -52,6 +51,7 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
     _dividerMarginRight,
     _dividerMarginHorizontal = 2,
     _dividerHeight = 20,
+    ...rest
   } = props;
 
   const [isSecure, setIsSecure] = useState(true);
@@ -95,7 +95,6 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
           _containerStyles,
           _rtl ? styles.justifyRightInRow : styles.justifyLeftInRow,
         ]}
-        {...props}
       >
         <TextInput
           style={[_inputStyle, { flex: 1 }]}
@@ -109,6 +108,7 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
           onSubmitEditing={onSubmitEditing}
           onBlur={onBlur}
           onFocus={onFocus}
+          {...rest}
         />
         <AppView
           _px={5}

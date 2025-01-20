@@ -18,7 +18,6 @@ export const AppButton: React.FC<AppButtonProps> = ({
   _loading,
   _loaderColor = 'white',
   _loaderSize = 'small',
-
   ...rest
 }) => {
   const { style: restStyle, ...remainingProps } = rest;

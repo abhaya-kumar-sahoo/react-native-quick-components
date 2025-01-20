@@ -15,6 +15,7 @@ import {
   HorizSpace,
   VertSpace,
   defaultConfig,
+  CentredBoxView,
 } from 'react-native-quick-components';
 
 export default function App() {
@@ -31,14 +32,16 @@ export default function App() {
     <FlexSafeView _p={20} _bow={2} _boc="green:400">
       <StatusBar barStyle={'light-content'} />
       {/* <AppImage  /> */}
-      <BoxView
+      <CentredBoxView
         _w={100}
         _h={100}
         _bor={20}
+        _boc="gray:50"
         _m={30}
+        _bow={2}
         _shadowColor="green:900"
-        _center
         _elev={10}
+        _overflow="hidden"
         _shadowOpacity={1}
         _shadowRadius={20}
         _shadowOffset={{ width: -5, height: 1 }}
@@ -54,8 +57,8 @@ export default function App() {
         >
           AB
         </AppText>
-        <CircleView _size={160} _bg="green" />
-      </BoxView>
+        <CircleView _size={160} _bow={2} _boc="gray:100" _bg="green" />
+      </CentredBoxView>
       <AbsoluteBox _b={0} _bg="pink:500">
         <AppView>
           <AppText>Absolute</AppText>
@@ -63,6 +66,7 @@ export default function App() {
       </AbsoluteBox>
       <TextInputBox
         placeholder="Enter Password"
+        _inputType="password"
         secureTextEntry={true}
         _inputStyle={{ color: 'black' }}
         _containerStyles={{ marginVertical: 10 }}
@@ -82,7 +86,7 @@ export default function App() {
         <VertSpace />
         <AppText>ABHAYA</AppText>
       </ColView>
-      <CircleView _size={80} _bow={1} _bg="red" />
+      <CircleView _size={80} _bow={1} _bg="red" _boc="teal:500" />
       <AppButton />
     </FlexSafeView>
   );

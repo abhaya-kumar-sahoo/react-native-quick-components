@@ -13,6 +13,7 @@ import { FlexSafeView } from './components/Flex/flex.safearea.index';
 import { Divider } from './components/Divider';
 import TextInputBox from './components/TextInput/PasswordInput';
 import { VertSpace, HorizSpace } from './utils';
+import { CentredBoxView } from './components/Box/CentredBox';
 // Config
 import { defaultConfig } from './config';
 import AppModal from './components/Modals/index';
@@ -58,6 +59,7 @@ export {
   VertSpace,
   HorizSpace,
   AppModal,
+  CentredBoxView,
 };
 
 // Export Config

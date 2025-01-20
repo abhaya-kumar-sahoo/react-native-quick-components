@@ -16,6 +16,8 @@ import {
   commonFlexStyle,
   commonShadowStyles,
   commonAlignSelf,
+  commonBorderColor,
+  commonFlexStyles,
 } from './style.component';
 
 export const styles = (value: any) =>
@@ -87,14 +89,22 @@ export const styles = (value: any) =>
       ...commonBackGroundColor(value),
     },
     box: {
-      ...(value?._flexBasis !== undefined && { flexBasis: value._flexBasis }),
-      ...(value?._flexGrow !== undefined && { flexGrow: value._flexGrow }),
-      ...(value?._flexShrink !== undefined && {
-        flexShrink: value._flexShrink,
-      }),
-      ...(value?._flexWrap !== undefined && { flexWrap: value._flexWrap }),
-
+      ...commonFlexStyles(value),
       ...commonAlignSelf(value),
+      ...commonShadowStyles(value),
+      ...commonFlexStyle(value),
+      ...commonBackGroundColor(value),
+      ...commonPadMadStyles(value),
+      ...commonBorder(value),
+      ...commonSizes(value, true),
+      ...commonWidthHeight(value),
+      ...centerX(value),
+      ...centerY(value),
+      ...center(value),
+    },
+    centredBox: {
+      ...commonFlexStyles(value),
+      ...commonAlignSelf(value, true),
       ...commonShadowStyles(value),
       ...commonFlexStyle(value),
       ...commonBackGroundColor(value),
@@ -110,7 +120,7 @@ export const styles = (value: any) =>
       ...commonWidthHeight(value),
       borderRadius: value?._size,
       borderWidth: value?._bow,
-      borderColor: value?._boc,
+      ...commonBorderColor(value),
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
       overflow: 'hidden',
@@ -132,12 +142,11 @@ export const styles = (value: any) =>
       ...(value?._h !== undefined
         ? { height: value?._h ?? 1.5 }
         : { height: 1.5 }),
-      ...(value?._c !== undefined ? { color: value?._c } : {}),
       ...commonColor(value?._c),
       marginVertical: value?._my,
       marginHorizontal: value?._mx,
       borderRadius: value?._bor ?? 0,
-      ...(value?._boc !== undefined ? { borderColor: value?._boc } : {}),
+      ...commonBorderColor(value),
     },
     button: {
       ...commonPadMadStyles(value),

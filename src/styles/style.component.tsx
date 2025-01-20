@@ -29,10 +29,37 @@ const commonPadMadStyles = (value: any = {}) => {
   };
 };
 
-const colorType = (c: string) => c?.split(':')[0] ?? 'red';
-const colorName = (c: string) => c?.split(':')[1] ?? '100';
-const color = (c: string) =>
-  c.includes(':') ? (DefaultColors as any)[colorType(c)][colorName(c)] : c;
+// const colorType = (c: string) => c?.split(':')[0] ?? 'red';
+// const colorName = (c: string) => c?.split(':')[1] ?? '100';
+// const color = (c: string) =>
+//   c.includes(':') ? (DefaultColors as any)[colorType(c)][colorName(c)] : c;
+
+// Helper to check if the color is in a valid hex format
+const isHexColor = (c: string) => /^#([0-9A-Fa-f]{3}){1,2}$/.test(c);
+
+// Helper to check if the color is in rgba/hsla format
+const isRgbaOrHsla = (c: string) =>
+  /^(rgba|hsla)\(\d+,\s*\d+%,\s*\d+%,\s*(\d+(\.\d+)?|1(\.0+)?)\)$/.test(c);
+
+// Enhanced color function
+const color = (c: string) => {
+  if (!c) return 'red'; // Default to 'red' if no color is provided
+
+  if (c.includes(':')) {
+    // Handle "colorType:colorName" custom format
+    const colorType = (x: string) => x?.split(':')[0] ?? 'red';
+    const colorName = (x: string) => x?.split(':')[1] ?? '100';
+    return (DefaultColors as any)[colorType(c)][colorName(c)];
+  }
+
+  // Handle valid React Native color formats
+  if (isHexColor(c) || isRgbaOrHsla(c)) {
+    return c;
+  }
+
+  // Fallback to named colors (e.g., "blue") or return the input
+  return c;
+};
 
 // Common background color style
 const commonBackGroundColor = (value?: any, enabled = false) => ({
@@ -44,6 +71,17 @@ const commonBackGroundColor = (value?: any, enabled = false) => ({
             ? config.defaultBackgroundColor
             : 'transparent',
         }
+      : {}),
+});
+const commonBorderColor = (value?: any) => ({
+  ...(value?._boc ? { borderColor: color(value?._boc) } : {}),
+});
+
+const commonTextColor = (value?: any) => ({
+  ...(value?._c !== undefined
+    ? { color: color(value?._c) }
+    : config.defaultTextColor
+      ? { color: config.defaultTextColor }
       : {}),
 });
 
@@ -71,7 +109,6 @@ const commonShadowStyles = (value?: any) => ({
 });
 
 const commonJcAlineFlexStyle = (value?: any) => ({
-  ///////////
   ...(value?._flex !== undefined ? { flex: value._flex } : {}),
   ...(value?._jc !== undefined
     ? { justifyContent: value?._jc }
@@ -81,10 +118,19 @@ const commonJcAlineFlexStyle = (value?: any) => ({
     : { alignItems: 'center' }),
 });
 
-const commonAlignSelf = (value?: any) => ({
+const commonFlexStyles = (value?: any) => ({
+  ...(value?._flexBasis !== undefined && { flexBasis: value._flexBasis }),
+  ...(value?._flexGrow !== undefined && { flexGrow: value._flexGrow }),
+  ...(value?._flexShrink !== undefined && {
+    flexShrink: value._flexShrink,
+  }),
+  ...(value?._flexWrap !== undefined && { flexWrap: value._flexWrap }),
+});
+
+const commonAlignSelf = (value?: any, isEnabled?: boolean) => ({
   ...(value?._alignSelf !== undefined
     ? { alignSelf: value?._alignSelf }
-    : { alignSelf: 'baseline' }),
+    : { alignSelf: isEnabled ? 'center' : 'baseline' }),
 });
 
 const commonColor = (value?: any, enabled = false) => ({
@@ -106,15 +152,15 @@ const commonBorder = (value: any = {}) => {
   return {
     borderRadius: getValue('_bor'),
     borderWidth: getValue('_bow'),
-    borderColor: getValue('_boc', color),
     borderTopLeftRadius: getValue('_btrl'),
     borderTopRightRadius: getValue('_btrr'),
     borderBottomLeftRadius: getValue('_btlr'),
     borderBottomRightRadius: getValue('_btbr'),
+    ...commonBorderColor(value),
   };
 };
 
-// Common size styles with conditional spreading
+// Common size styles with condtrue),nl spreading
 
 const commonSizes = (value: any = {}, isOverflow?: boolean) => {
   const isPercentage = (val: any) =>
@@ -142,11 +188,6 @@ const commonSizes = (value: any = {}, isOverflow?: boolean) => {
 };
 
 const commonTextStyles = (value?: any) => ({
-  ...(value?._c !== undefined
-    ? { color: color(value?._c) }
-    : config.defaultTextColor
-      ? { color: config.defaultTextColor }
-      : {}),
   ...(value?._fontSize !== undefined
     ? { fontSize: scale(value._fontSize) }
     : config.defaultFontSize
@@ -164,7 +205,7 @@ const commonTextStyles = (value?: any) => ({
   ...(value?._lineHeight !== undefined
     ? { lineHeight: value._lineHeight }
     : {}),
-
+  ...commonTextColor(value),
   ...commonPadMadStyles(value),
   ...commonSizes(value),
 });
@@ -228,4 +269,7 @@ export {
   commonFlexStyle,
   commonShadowStyles,
   commonAlignSelf,
+  commonBorderColor,
+  commonTextColor,
+  commonFlexStyles,
 };

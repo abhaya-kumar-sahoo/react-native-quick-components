@@ -6,32 +6,32 @@ import { styles } from '../../styles';
 import { AbsoluteBox } from '../Absolute';
 
 export const AppButton: React.FC<AppButtonProps> = ({
-  _title = 'Press',
+  $title = 'Press',
   onPress,
-  _textStyle,
-  _leftComponent,
-  _rightComponent,
-  _bg = 'green',
-  _px = 15,
-  _py = 5,
-  _bor = 5,
-  _loading,
-  _loaderColor = 'white',
-  _loaderSize = 'small',
+  $textStyle,
+  $leftComponent,
+  $rightComponent,
+  $bg = 'green',
+  $px = 15,
+  $py = 5,
+  $bor = 5,
+  $loading,
+  $loaderColor = 'white',
+  $loaderSize = 'small',
   ...rest
 }) => {
   const { style: restStyle, ...remainingProps } = rest;
   const { style: containerStyleProps, ...remainingTextProps } =
-    _textStyle || {};
+    $textStyle || {};
 
   // Include BG in the rest object before passing it to styles
-  const buttonStyle = styles({ _bg, _px, _py, _bor, ...rest }).button;
-  const textStyles = styles(_textStyle).text;
+  const buttonStyle = styles({ $bg, $px, $py, $bor, ...rest }).button;
+  const textStyles = styles($textStyle).text;
 
   return (
     <TouchableOpacity
       activeOpacity={0.6}
-      disabled={!onPress && _loading}
+      disabled={!onPress && $loading}
       onPress={onPress}
       style={[
         buttonStyle,
@@ -41,36 +41,36 @@ export const AppButton: React.FC<AppButtonProps> = ({
       {...remainingProps}
     >
       {/* Left Component */}
-      {_leftComponent && (
-        <View style={{ overflow: 'hidden' }}>{_leftComponent}</View>
+      {$leftComponent && (
+        <View style={{ overflow: 'hidden' }}>{$leftComponent}</View>
       )}
 
       <Text
         style={[
           textStyles,
           containerStyleProps,
-          { opacity: _loading ? 0.4 : 1 },
+          { opacity: $loading ? 0.4 : 1 },
         ]}
         {...remainingTextProps}
       >
-        {_title}
+        {$title}
       </Text>
-      {_loading && (
+      {$loading && (
         <AbsoluteBox
-          _b={0}
-          _t={0}
-          _l={0}
-          _r={0}
-          _zIndex={999999}
-          _overflow="hidden"
-          _center
+          $b={0}
+          $t={0}
+          $l={0}
+          $r={0}
+          $zIndex={999999}
+          $overflow="hidden"
+          $center
         >
-          <ActivityIndicator color={_loaderColor} size={_loaderSize} />
+          <ActivityIndicator color={$loaderColor} size={$loaderSize} />
         </AbsoluteBox>
       )}
       {/* Right Component */}
-      {_rightComponent && (
-        <View style={{ overflow: 'hidden' }}>{_rightComponent}</View>
+      {$rightComponent && (
+        <View style={{ overflow: 'hidden' }}>{$rightComponent}</View>
       )}
     </TouchableOpacity>
   );

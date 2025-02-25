@@ -3,7 +3,7 @@ import { styles } from '../../styles';
 import type { BoxProps } from '../../types/types';
 import React from 'react';
 
-export const CentredBoxView: React.FC<BoxProps> = ({
+export const CentreView: React.FC<BoxProps> = ({
   children,
   onPress,
   ...rest

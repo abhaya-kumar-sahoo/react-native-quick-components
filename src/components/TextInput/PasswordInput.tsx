@@ -35,22 +35,22 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
     value,
     placeholder,
     placeholderTextColor = '#C5C5C5',
-    _alertType,
-    _iconColor = '#f3f3f3',
-    _hint,
-    _hintColor = '#818181',
-    _hintStyles,
-    _inputStyle,
-    _rtl = false,
-    _containerStyles,
-    _inputType = 'phone',
-    _iconSize = 20,
-    _dividerColor = '#818181',
-    _dividerWidth = 1,
-    _dividerMarginLeft,
-    _dividerMarginRight,
-    _dividerMarginHorizontal = 2,
-    _dividerHeight = 20,
+    $alertType,
+    $iconColor = '#f3f3f3',
+    $hint,
+    $hintColor = '#818181',
+    $hintStyles,
+    $inputStyle,
+    $rtl = false,
+    $containerStyles,
+    $inputType = 'phone',
+    $iconSize = 20,
+    $dividerColor = '#818181',
+    $dividerWidth = 1,
+    $dividerMarginLeft,
+    $dividerMarginRight,
+    $dividerMarginHorizontal = 2,
+    $dividerHeight = 20,
     ...rest
   } = props;
 
@@ -63,8 +63,8 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
   };
 
   const renderAlertIcon = () => {
-    if (_alertType) {
-      switch (_alertType) {
+    if ($alertType) {
+      switch ($alertType) {
         case 'success':
           return <CheckCircleIcon color="#28a745" size={16} />;
         case 'warning':
@@ -86,18 +86,18 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
   return (
     <>
       <RowView
-        _bow={2}
-        _boc="gray"
-        _h={50}
-        _px={5}
-        _bor={10}
+        $bow={2}
+        $boc="gray"
+        $h={50}
+        $px={5}
+        $bor={10}
         style={[
-          _containerStyles,
-          _rtl ? styles.justifyRightInRow : styles.justifyLeftInRow,
+          $containerStyles,
+          $rtl ? styles.justifyRightInRow : styles.justifyLeftInRow,
         ]}
       >
         <TextInput
-          style={[_inputStyle, { flex: 1 }]}
+          style={[$inputStyle, { flex: 1 }]}
           onChangeText={onChange}
           blurOnSubmit={blurOnSubmit}
           returnKeyType={returnKeyType}
@@ -111,44 +111,44 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
           {...rest}
         />
         <AppView
-          _px={5}
-          style={[_rtl ? styles.justifyLeftInRow : styles.justifyRightInRow]}
+          $px={5}
+          style={[$rtl ? styles.justifyLeftInRow : styles.justifyRightInRow]}
         >
           <>
-            {_inputType === 'email' && (
-              <AtSymbolIcon color={_iconColor} size={_iconSize} />
+            {$inputType === 'email' && (
+              <AtSymbolIcon color={$iconColor} size={$iconSize} />
             )}
-            {_inputType === 'user' && (
-              <UserIcon color={_iconColor} size={_iconSize} />
+            {$inputType === 'user' && (
+              <UserIcon color={$iconColor} size={$iconSize} />
             )}
-            {_inputType === 'phone' && (
-              <DevicePhoneMobileIcon color={_iconColor} size={_iconSize} />
+            {$inputType === 'phone' && (
+              <DevicePhoneMobileIcon color={$iconColor} size={$iconSize} />
             )}
           </>
-          {_inputType === 'password' && secureTextEntry && (
+          {$inputType === 'password' && secureTextEntry && (
             <View>
               <TouchableOpacity onPress={onEyePress} style={[styles.paddingH5]}>
                 {isSecure ? (
-                  <EyeSlashIcon color={_iconColor} size={_iconSize} />
+                  <EyeSlashIcon color={$iconColor} size={$iconSize} />
                 ) : (
-                  <EyeIcon color={_iconColor} size={_iconSize} />
+                  <EyeIcon color={$iconColor} size={$iconSize} />
                 )}
               </TouchableOpacity>
             </View>
           )}
-          {secureTextEntry && _alertType && (
+          {secureTextEntry && $alertType && (
             <>
               <View
                 style={[
                   {
-                    width: _dividerWidth,
-                    height: _dividerHeight,
-                    backgroundColor: _dividerColor,
-                    ...(_dividerMarginHorizontal
-                      ? { marginHorizontal: _dividerMarginHorizontal }
+                    width: $dividerWidth,
+                    height: $dividerHeight,
+                    backgroundColor: $dividerColor,
+                    ...($dividerMarginHorizontal
+                      ? { marginHorizontal: $dividerMarginHorizontal }
                       : {
-                          marginLeft: _dividerMarginLeft,
-                          marginRight: _dividerMarginRight,
+                          marginLeft: $dividerMarginLeft,
+                          marginRight: $dividerMarginRight,
                         }),
                   },
                 ]}
@@ -160,9 +160,9 @@ const TextInputBox: React.FC<TextBoxProps> = (props) => {
           )}
         </AppView>
       </RowView>
-      {_hint && (
-        <Text style={[styles.font12, _hintStyles, { color: _hintColor }]}>
-          {_hint}
+      {$hint && (
+        <Text style={[styles.font12, $hintStyles, { color: $hintColor }]}>
+          {$hint}
         </Text>
       )}
     </>

@@ -13,11 +13,12 @@ import { FlexSafeView } from './components/Flex/flex.safearea.index';
 import { Divider } from './components/Divider';
 import TextInputBox from './components/TextInput/PasswordInput';
 import { VertSpace, HorizSpace } from './utils';
-import { CentredBoxView } from './components/Box/CentredBox';
+import { CentreView } from './components/Box/CentreView';
 // Config
 import { defaultConfig } from './config';
 import AppModal from './components/Modals/index';
-
+import { fontSizePct, fontSizeScreenHeight } from './utils/responsive_fontsize';
+import { isIphoneX } from './utils/isIphoneX';
 // Platform Utilities
 import {
   isIOS,
@@ -59,7 +60,7 @@ export {
   VertSpace,
   HorizSpace,
   AppModal,
-  CentredBoxView,
+  CentreView,
 };
 
 // Export Config
@@ -77,7 +78,15 @@ export {
   SCREEN_W,
   isLandscape,
   isPortrait,
+  isIphoneX,
 };
 
 // Export Size Utilities
-export { scale, moderateScale, moderateVerticalScale, verticalScale };
+export {
+  scale,
+  moderateScale,
+  moderateVerticalScale,
+  verticalScale,
+  fontSizePct,
+  fontSizeScreenHeight,
+};

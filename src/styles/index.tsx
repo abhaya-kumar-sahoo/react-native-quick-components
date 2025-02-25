@@ -24,7 +24,7 @@ export const styles = (value: any) =>
   StyleSheet.create({
     row: {
       flexDirection: 'row',
-      ...commonJcAlineFlexStyle(value),
+      ...(commonJcAlineFlexStyle(value) as any),
       ...commonGapStyles(value),
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
@@ -36,7 +36,7 @@ export const styles = (value: any) =>
     },
     column: {
       flexDirection: 'column',
-      ...commonJcAlineFlexStyle(value),
+      ...(commonJcAlineFlexStyle(value) as any),
       ...commonGapStyles(value),
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
@@ -118,8 +118,8 @@ export const styles = (value: any) =>
     },
     circle: {
       ...commonWidthHeight(value),
-      borderRadius: value?._size,
-      borderWidth: value?._bow,
+      borderRadius: value?.$size,
+      borderWidth: value?.$bow,
       ...commonBorderColor(value),
       ...commonBackGroundColor(value),
       ...commonPadMadStyles(value),
@@ -136,16 +136,16 @@ export const styles = (value: any) =>
       ...commonBorder(value),
     },
     divider: {
-      ...(value?._w !== undefined
-        ? { width: value?._w ?? 100 }
+      ...(value?.$w !== undefined
+        ? { width: value?.$w ?? 100 }
         : { width: 100 }),
-      ...(value?._h !== undefined
-        ? { height: value?._h ?? 1.5 }
+      ...(value?.$h !== undefined
+        ? { height: value?.$h ?? 1.5 }
         : { height: 1.5 }),
-      ...commonColor(value?._c),
-      marginVertical: value?._my,
-      marginHorizontal: value?._mx,
-      borderRadius: value?._bor ?? 0,
+      ...commonColor(value?.$c),
+      marginVertical: value?.$my,
+      marginHorizontal: value?.$mx,
+      borderRadius: value?.$bor ?? 0,
       ...commonBorderColor(value),
     },
     button: {
@@ -168,12 +168,12 @@ export const styles = (value: any) =>
     absolute: {
       position: 'absolute',
       ...commonFlexStyle(value),
-      ...(value?._t !== undefined ? { top: value?._t } : {}),
-      ...(value?._l !== undefined ? { left: value?._l } : {}),
-      ...(value?._r !== undefined ? { right: value?._r } : {}),
-      ...(value?._b !== undefined ? { bottom: value?._b } : {}),
-      ...(value?._zIndex !== undefined
-        ? { zIndex: value?._zIndex }
+      ...(value?.$t !== undefined ? { top: value?.$t } : {}),
+      ...(value?.$l !== undefined ? { left: value?.$l } : {}),
+      ...(value?.$r !== undefined ? { right: value?.$r } : {}),
+      ...(value?.$b !== undefined ? { bottom: value?.$b } : {}),
+      ...(value?.$zIndex !== undefined
+        ? { zIndex: value?.$zIndex }
         : { zIndex: 1 }),
       ...commonPadMadStyles(value),
       ...commonSizes(value, true),

@@ -10,29 +10,22 @@ const commonPadMadStyles = (value: any = {}) => {
       : value[key];
 
   return {
-    padding: getScaledValue('_p', moderateScale),
-    paddingLeft: getScaledValue('_pl', moderateScale),
-    paddingRight: getScaledValue('_pr', moderateScale),
-    paddingTop: getScaledValue('_pt', verticalScale),
-    paddingBottom: getScaledValue('_pb', verticalScale),
-    paddingHorizontal: getScaledValue('_px', moderateScale),
-    paddingVertical: getScaledValue('_py', verticalScale),
-    margin: getScaledValue('_m', moderateScale),
-    marginLeft: getScaledValue('_ml', moderateScale),
-    marginRight: getScaledValue('_mr', moderateScale),
-    marginTop: getScaledValue('_mt', verticalScale),
-    marginBottom: getScaledValue('_mb', verticalScale),
-    marginHorizontal: getScaledValue('_mx', moderateScale),
-    marginVertical: getScaledValue('_my', verticalScale),
-
-    ///////
+    padding: getScaledValue('$p', moderateScale),
+    paddingLeft: getScaledValue('$pl', moderateScale),
+    paddingRight: getScaledValue('$pr', moderateScale),
+    paddingTop: getScaledValue('$pt', verticalScale),
+    paddingBottom: getScaledValue('$pb', verticalScale),
+    paddingHorizontal: getScaledValue('$px', moderateScale),
+    paddingVertical: getScaledValue('$py', verticalScale),
+    margin: getScaledValue('$m', moderateScale),
+    marginLeft: getScaledValue('$ml', moderateScale),
+    marginRight: getScaledValue('$mr', moderateScale),
+    marginTop: getScaledValue('$mt', verticalScale),
+    marginBottom: getScaledValue('$mb', verticalScale),
+    marginHorizontal: getScaledValue('$mx', moderateScale),
+    marginVertical: getScaledValue('$my', verticalScale),
   };
 };
-
-// const colorType = (c: string) => c?.split(':')[0] ?? 'red';
-// const colorName = (c: string) => c?.split(':')[1] ?? '100';
-// const color = (c: string) =>
-//   c.includes(':') ? (DefaultColors as any)[colorType(c)][colorName(c)] : c;
 
 // Helper to check if the color is in a valid hex format
 const isHexColor = (c: string) => /^#([0-9A-Fa-f]{3}){1,2}$/.test(c);
@@ -63,8 +56,8 @@ const color = (c: string) => {
 
 // Common background color style
 const commonBackGroundColor = (value?: any, enabled = false) => ({
-  ...(value?._bg
-    ? { backgroundColor: color(value?._bg) }
+  ...(value?.$bg
+    ? { backgroundColor: color(value?.$bg) }
     : config.defaultBackgroundColor
       ? {
           backgroundColor: enabled
@@ -74,62 +67,73 @@ const commonBackGroundColor = (value?: any, enabled = false) => ({
       : {}),
 });
 const commonBorderColor = (value?: any) => ({
-  ...(value?._boc ? { borderColor: color(value?._boc) } : {}),
+  ...(value?.$boc ? { borderColor: color(value?.$boc) } : {}),
 });
 
 const commonTextColor = (value?: any) => ({
-  ...(value?._c !== undefined
-    ? { color: color(value?._c) }
+  ...(value?.$c !== undefined
+    ? { color: color(value?.$c) }
     : config.defaultTextColor
       ? { color: config.defaultTextColor }
       : {}),
 });
 
 const commonShadowStyles = (value?: any) => ({
-  ...(value?._shadowColor !== undefined
-    ? { shadowColor: color(value?._shadowColor) }
+  ...(value?.$shadowColor !== undefined
+    ? { shadowColor: color(value?.$shadowColor) }
     : {}),
 
-  ...(value?._shadowOffset !== undefined
+  ...(value?.$shadowOffset !== undefined
     ? {
         shadowOffset: {
-          width: value?._shadowOffset?.width,
-          height: value?._shadowOffset?.height,
+          width: value?.$shadowOffset?.width,
+          height: value?.$shadowOffset?.height,
         },
       }
     : {}),
-  ...(value?._shadowOpacity !== undefined
-    ? { shadowOpacity: value?._shadowOpacity }
+  ...(value?.$shadowOpacity !== undefined
+    ? { shadowOpacity: value?.$shadowOpacity }
     : {}),
-  ...(value?._shadowRadius !== undefined
-    ? { shadowOpacity: value?._shadowRadius }
+  ...(value?.$shadowRadius !== undefined
+    ? { shadowOpacity: value?.$shadowRadius }
     : {}),
 
-  ...(value?._elev !== undefined ? { elevation: value?._elev } : {}),
+  ...(value?.$elev !== undefined ? { elevation: value?.$elev } : {}),
 });
 
 const commonJcAlineFlexStyle = (value?: any) => ({
-  ...(value?._flex !== undefined ? { flex: value._flex } : {}),
-  ...(value?._jc !== undefined
-    ? { justifyContent: value?._jc }
-    : { justifyContent: 'space-between' }),
-  ...(value?._alignItems !== undefined
-    ? { alignItems: value?._alignItems }
+  ...(value?.$flex !== undefined ? { flex: value.$flex } : {}),
+  justifyContent: value?.$fs
+    ? 'flex-start'
+    : value?.$c
+      ? 'center'
+      : value?.$fe
+        ? 'flex-end'
+        : value?.$sb
+          ? 'space-between'
+          : value?.$se
+            ? 'space-evenly'
+            : value?.$sa
+              ? 'space-around'
+              : 'space-start',
+
+  ...(value?.$alignItems !== undefined
+    ? { alignItems: value?.$alignItems }
     : { alignItems: 'center' }),
 });
 
 const commonFlexStyles = (value?: any) => ({
-  ...(value?._flexBasis !== undefined && { flexBasis: value._flexBasis }),
-  ...(value?._flexGrow !== undefined && { flexGrow: value._flexGrow }),
-  ...(value?._flexShrink !== undefined && {
-    flexShrink: value._flexShrink,
+  ...(value?.$flexBasis !== undefined && { flexBasis: value.$flexBasis }),
+  ...(value?.$flexGrow !== undefined && { flexGrow: value.$flexGrow }),
+  ...(value?.$flexShrink !== undefined && {
+    flexShrink: value.$flexShrink,
   }),
-  ...(value?._flexWrap !== undefined && { flexWrap: value._flexWrap }),
+  ...(value?.$flexWrap !== undefined && { flexWrap: value.$flexWrap }),
 });
 
 const commonAlignSelf = (value?: any, isEnabled?: boolean) => ({
-  ...(value?._alignSelf !== undefined
-    ? { alignSelf: value?._alignSelf }
+  ...(value?.$alignSelf !== undefined
+    ? { alignSelf: value?.$alignSelf }
     : { alignSelf: isEnabled ? 'center' : 'baseline' }),
 });
 
@@ -150,12 +154,12 @@ const commonBorder = (value: any = {}) => {
   const getValue = (key: string, transformFn = (v: any) => v) =>
     value[key] !== undefined ? transformFn(value[key]) : undefined;
   return {
-    borderRadius: getValue('_bor'),
-    borderWidth: getValue('_bow'),
-    borderTopLeftRadius: getValue('_btrl'),
-    borderTopRightRadius: getValue('_btrr'),
-    borderBottomLeftRadius: getValue('_btlr'),
-    borderBottomRightRadius: getValue('_btbr'),
+    borderRadius: getValue('$bor'),
+    borderWidth: getValue('$bow'),
+    borderTopLeftRadius: getValue('$btrl'),
+    borderTopRightRadius: getValue('$btrr'),
+    borderBottomLeftRadius: getValue('$btlr'),
+    borderBottomRightRadius: getValue('$btbr'),
     ...commonBorderColor(value),
   };
 };
@@ -174,37 +178,35 @@ const commonSizes = (value: any = {}, isOverflow?: boolean) => {
       : value[key];
 
   return {
-    width: getScaledValue('_w', moderateScale),
-    height: getScaledValue('_h', verticalScale),
-    minWidth: getScaledValue('_minW', moderateScale),
-    minHeight: getScaledValue('_minH', verticalScale),
-    maxWidth: getScaledValue('_maxW', moderateScale),
-    maxHeight: getScaledValue('_maxH', verticalScale),
-    aspectRatio: value?._aspectRatio,
-    ...(value?._overflow || isOverflow
-      ? { overflow: value?._overflow ?? (isOverflow ? 'hidden' : undefined) }
+    width: getScaledValue('$w', moderateScale),
+    height: getScaledValue('$h', verticalScale),
+    minWidth: getScaledValue('$minW', moderateScale),
+    minHeight: getScaledValue('$minH', verticalScale),
+    maxWidth: getScaledValue('$maxW', moderateScale),
+    maxHeight: getScaledValue('$maxH', verticalScale),
+    aspectRatio: value?.$aspectRatio,
+    ...(value?.$overflow || isOverflow
+      ? { overflow: value?.$overflow ?? (isOverflow ? 'hidden' : undefined) }
       : {}),
   };
 };
 
 const commonTextStyles = (value?: any) => ({
-  ...(value?._fontSize !== undefined
-    ? { fontSize: scale(value._fontSize) }
+  ...(value?.$fs !== undefined
+    ? { fontSize: scale(value.$fs) }
     : config.defaultFontSize
       ? { fontSize: config.defaultFontSize }
       : {}),
-  ...(value?._bold !== undefined
-    ? { fontWeight: typeof value?._bold === 'string' ? value?._bold : 'bold' }
+  ...(value?.$bold !== undefined
+    ? { fontWeight: typeof value?.$bold === 'string' ? value?.$bold : 'bold' }
     : {}),
-  ...(value?._fontFamily !== undefined
-    ? { fontFamily: value._fontFamily }
+  ...(value?.$ff !== undefined
+    ? { fontFamily: value.$ff }
     : config.defaultFontFamily
       ? { fontFamily: config.defaultFontFamily }
       : {}),
-  ...(value?._textAline !== undefined ? { textAlign: value._textAline } : {}),
-  ...(value?._lineHeight !== undefined
-    ? { lineHeight: value._lineHeight }
-    : {}),
+  ...(value?.$ta !== undefined ? { textAlign: value.$ta } : {}),
+  ...(value?.$lh !== undefined ? { lineHeight: value.$lh } : {}),
   ...commonTextColor(value),
   ...commonPadMadStyles(value),
   ...commonSizes(value),
@@ -212,20 +214,20 @@ const commonTextStyles = (value?: any) => ({
 
 // Common width and height styles
 const commonWidthHeight = (value?: any) => ({
-  ...(value?._size !== undefined
+  ...(value?.$size !== undefined
     ? {
         width: config.enableResponsive
-          ? moderateScale(value?._size)
-          : value?._size,
+          ? moderateScale(value?.$size)
+          : value?.$size,
         height: config.enableResponsive
-          ? moderateScale(value?._size)
-          : value?._size,
+          ? moderateScale(value?.$size)
+          : value?.$size,
       }
     : {}),
 });
 
 const center = (value?: any) =>
-  value?._center !== undefined
+  value?.$center !== undefined
     ? {
         alignItems: 'center' as ViewStyle['alignItems'],
         justifyContent: 'center' as ViewStyle['justifyContent'],
@@ -233,24 +235,24 @@ const center = (value?: any) =>
     : {};
 
 const centerX = (value?: any) =>
-  value?._centerX !== undefined
+  value?.$centerX !== undefined
     ? { alignItems: 'center' as ViewStyle['alignItems'] }
     : {};
 
 const centerY = (value?: any) =>
-  value?._centerY !== undefined
+  value?.$centerY !== undefined
     ? { justifyContent: 'center' as ViewStyle['justifyContent'] }
     : {};
 
 const commonGapStyles = (value?: any) => ({
-  flexWrap: value?._flexWrap, // Use flexWrap directly
-  ...(value?._gap !== undefined ? { gap: value?._gap } : {}), // Conditionally apply gap
-  ...(value?._rowGap !== undefined ? { rowGap: value?._rowGap } : {}), // Conditionally apply rowGap
-  ...(value?._colGap !== undefined ? { columnGap: value?._colGap } : {}), // Conditionally apply columnGap
+  flexWrap: value?.$flexWrap, // Use flexWrap directly
+  ...(value?.$gap !== undefined ? { gap: value?.$gap } : {}), // Conditionally apply gap
+  ...(value?.$rowGap !== undefined ? { rowGap: value?.$rowGap } : {}), // Conditionally apply rowGap
+  ...(value?.$colGap !== undefined ? { columnGap: value?.$colGap } : {}), // Conditionally apply columnGap
 });
 
 const commonFlexStyle = (value?: any) => ({
-  ...(value?._flex !== undefined ? { flex: value._flex } : {}),
+  ...(value?.$flex !== undefined ? { flex: value.$flex } : {}),
 });
 
 export {

@@ -15,78 +15,82 @@ import {
   HorizSpace,
   VertSpace,
   defaultConfig,
-  CentredBoxView,
+  CentreView,
 } from 'react-native-quick-components';
 
 export default function App() {
   React.useLayoutEffect(() => {
     defaultConfig({
-      // defaultBackgroundColor: 'black',
-      defaultTextColor: 'black',
+      defaultBackgroundColor: 'black',
+      defaultTextColor: 'white',
       defaultFontSize: 16,
-      // enableResponsive: false,
     });
   }, []);
 
   return (
-    <FlexSafeView _p={20} _bow={2} _boc="green:400">
+    <FlexSafeView $bg="black" $p={20} $bow={2} $boc="green:400">
       <StatusBar barStyle={'light-content'} />
-      {/* <AppImage  /> */}
-      <CentredBoxView
-        _w={100}
-        _h={100}
-        _bor={20}
-        _boc="gray:50"
-        _m={30}
-        _bow={2}
-        _shadowColor="green:900"
-        _elev={10}
-        _overflow="hidden"
-        _shadowOpacity={1}
-        _shadowRadius={20}
-        _shadowOffset={{ width: -5, height: 1 }}
-        _bg="green:200"
+      <CentreView
+        $w={100}
+        $h={100}
+        $bor={20}
+        $boc="gray:50"
+        $m={30}
+        $bow={2}
+        $shadowColor="green:900"
+        $elev={10}
+        $overflow="hidden"
+        $shadowOpacity={1}
+        $shadowRadius={20}
+        $shadowOffset={{ width: -5, height: 1 }}
+        $bg="green:200"
       >
         <AppText
-          _bold
-          _c="orange:800"
-          _fontFamily="serif"
-          _lineHeight={30}
-          _fontSize={30}
-          _textAline="right"
+          $bold
+          $c="orange:800"
+          $ff="serif"
+          $lh={30}
+          $fs={30}
+          $ta="right"
         >
           AB
         </AppText>
-        <CircleView _size={160} _bow={2} _boc="gray:100" _bg="green" />
-      </CentredBoxView>
-      <AbsoluteBox _b={0} _bg="pink:500">
+        <CircleView $size={160} $bow={2} $boc="gray:100" $bg="green" />
+      </CentreView>
+      <BoxView $bg="amber:600" $size={100} $center $bor={10}>
+        <AppText>A</AppText>
+      </BoxView>
+      <AbsoluteBox $b={0} $bg="pink:500">
         <AppView>
           <AppText>Absolute</AppText>
         </AppView>
       </AbsoluteBox>
       <TextInputBox
         placeholder="Enter Password"
-        _inputType="password"
+        $inputType="password"
         secureTextEntry={true}
-        _inputStyle={{ color: 'black' }}
-        _containerStyles={{ marginVertical: 10 }}
+        $inputStyle={{ color: 'black' }}
+        $containerStyles={{ marginVertical: 10 }}
         onChangeText={() => {}}
       />
 
-      <Divider _c="lime:800" _h={1} _w={100} _bor={10} />
-      <RowView _jc="flex-start">
+      <Divider $c="lime:800" $h={1} $w={100} $bor={10} />
+      <RowView $fe>
         <AppText>ABHAYA</AppText>
         <HorizSpace size={20} />
         <AppText>ABHAYA</AppText>
         <BoxView />
       </RowView>
-
-      <ColView _jc="space-between">
+      <RowView $se $bg="red">
+        <AppText>ABHAYA</AppText>
+        <AppText>ABHAYA</AppText>
+      </RowView>
+      <ColView $jc="space-between">
         <AppText>ABHAYA</AppText>
         <VertSpace />
         <AppText>ABHAYA</AppText>
       </ColView>
-      <CircleView _size={80} _bow={1} _bg="red" _boc="teal:500" />
+      <CircleView $size={80} $bow={1} $bg="red" $boc="teal:500" />
       <AppButton />
     </FlexSafeView>
   );

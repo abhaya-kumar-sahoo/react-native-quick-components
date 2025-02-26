@@ -1,3 +1,5 @@
+import type { ColorSuggestion } from './types';
+
 /**
  * Interface for defining border-related styling properties.
  */

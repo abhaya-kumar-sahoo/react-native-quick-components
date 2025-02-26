@@ -76,7 +76,7 @@ export default function App() {
 
       <Divider $c="lime:800" $h={1} $w={100} $bor={10} />
       <RowView $fe>
-        <AppText>ABHAYA</AppText>
+        <AppText $c="amber:100">ABHAYA</AppText>
         <HorizSpace size={20} />
         <AppText>ABHAYA</AppText>
         <BoxView />

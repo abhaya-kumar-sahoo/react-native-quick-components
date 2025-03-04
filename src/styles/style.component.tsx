@@ -79,41 +79,35 @@ const commonTextColor = (value?: any) => ({
 });
 
 const commonShadowStyles = (value?: any) => ({
-  ...(value?.$shadowColor !== undefined
-    ? { shadowColor: color(value?.$shadowColor) }
-    : {}),
+  ...(value?.$sc !== undefined ? { shadowColor: color(value?.$sc) } : {}),
 
-  ...(value?.$shadowOffset !== undefined
+  ...(value?.$sof !== undefined
     ? {
         shadowOffset: {
-          width: value?.$shadowOffset?.width,
-          height: value?.$shadowOffset?.height,
+          width: value?.$sof?.width,
+          height: value?.$sof?.height,
         },
       }
     : {}),
-  ...(value?.$shadowOpacity !== undefined
-    ? { shadowOpacity: value?.$shadowOpacity }
-    : {}),
-  ...(value?.$shadowRadius !== undefined
-    ? { shadowOpacity: value?.$shadowRadius }
-    : {}),
+  ...(value?.$sop !== undefined ? { shadowOpacity: value?.$sop } : {}),
+  ...(value?.$sr !== undefined ? { shadowRadius: value?.$sr } : {}),
 
-  ...(value?.$elev !== undefined ? { elevation: value?.$elev } : {}),
+  ...(value?.$el !== undefined ? { elevation: value?.$el } : {}),
 });
 
 const commonJcAlineFlexStyle = (value?: any) => ({
   ...(value?.$flex !== undefined ? { flex: value.$flex } : {}),
   justifyContent: value?.$fs
     ? 'flex-start'
-    : value?.$c
+    : value?.$center
       ? 'center'
       : value?.$fe
         ? 'flex-end'
-        : value?.$sb
+        : value?.$spb
           ? 'space-between'
-          : value?.$se
+          : value?.$spe
             ? 'space-evenly'
-            : value?.$sa
+            : value?.$spa
               ? 'space-around'
               : 'space-start',
 
@@ -123,17 +117,17 @@ const commonJcAlineFlexStyle = (value?: any) => ({
 });
 
 const commonFlexStyles = (value?: any) => ({
-  ...(value?.$flexBasis !== undefined && { flexBasis: value.$flexBasis }),
-  ...(value?.$flexGrow !== undefined && { flexGrow: value.$flexGrow }),
-  ...(value?.$flexShrink !== undefined && {
-    flexShrink: value.$flexShrink,
+  ...(value?.$fb !== undefined && { flexBasis: value.$fb }),
+  ...(value?.$fg !== undefined && { flexGrow: value.$fg }),
+  ...(value?.$fs !== undefined && {
+    flexShrink: value.$fs,
   }),
-  ...(value?.$flexWrap !== undefined && { flexWrap: value.$flexWrap }),
+  ...(value?.$fw !== undefined && { flexWrap: value.$fw }),
 });
 
 const commonAlignSelf = (value?: any, isEnabled?: boolean) => ({
-  ...(value?.$alignSelf !== undefined
-    ? { alignSelf: value?.$alignSelf }
+  ...(value?.$as !== undefined
+    ? { alignSelf: value?.$as }
     : { alignSelf: isEnabled ? 'center' : 'baseline' }),
 });
 
@@ -245,14 +239,14 @@ const centerY = (value?: any) =>
     : {};
 
 const commonGapStyles = (value?: any) => ({
-  flexWrap: value?.$flexWrap, // Use flexWrap directly
-  ...(value?.$gap !== undefined ? { gap: value?.$gap } : {}), // Conditionally apply gap
-  ...(value?.$rowGap !== undefined ? { rowGap: value?.$rowGap } : {}), // Conditionally apply rowGap
-  ...(value?.$colGap !== undefined ? { columnGap: value?.$colGap } : {}), // Conditionally apply columnGap
+  flexWrap: value?.$fw, // Use flexWrap directly
+  ...(value?.$g !== undefined ? { gap: value?.$g } : {}), // Conditionally apply gap
+  ...(value?.$rg !== undefined ? { rowGap: value?.$rg } : {}), // Conditionally apply rowGap
+  ...(value?.$cg !== undefined ? { columnGap: value?.$cg } : {}), // Conditionally apply columnGap
 });
 
 const commonFlexStyle = (value?: any) => ({
-  ...(value?.$flex !== undefined ? { flex: value.$flex } : {}),
+  ...(value?.$f !== undefined ? { flex: value.$f } : {}),
 });
 
 export {

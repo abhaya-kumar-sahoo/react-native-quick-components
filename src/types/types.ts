@@ -1,6 +1,5 @@
 import React, { type ReactNode } from 'react';
 import type {
-  ImageProps,
   ImageStyle,
   StyleProp,
   TextProps,
@@ -12,11 +11,12 @@ import type {
   ImagePropsBase,
   ModalProps,
   ActivityIndicatorProps,
+  FlexAlignType,
 } from 'react-native';
 import type { DefaultColors } from './colors';
 import type { HeightWidthTypes } from './h_w_types';
 import type { TextStylingProps } from './text.types';
-import type { SizeProps, SpacingProps } from './size.types';
+import type { SizeProps, PaddingMarginProps } from './size.types';
 import type { CustomBoxProps } from './box.types';
 import type { BorderProps } from './border.types';
 
@@ -45,30 +45,18 @@ export interface OverFlowTypes {
  */
 export interface BackgroundProps {
   /**
-   * Specifies the background color of the component.
-   * Accepts any valid color value (e.g., `"#fff"`, `"rgba(255,255,255,0.8)"`, or named colors).
-   *
-   * @example
-   * // Set background color to light gray:
-   * <Component $bg="#f0f0f0" />
+   * $bg: Shortcut for "backgroundColor".
+   * Sets the background color of the component.
    */
   $bg?: ColorSuggestion;
 }
 
-// Background and Shadow Props
-/**
- * Interface for handling alignment and centering properties of a component.
- */
 export interface CenterProps {
   /**
-   * Specifies how the component is aligned along the cross-axis within its parent container.
-   * Accepts `auto`, `flex-start`, `flex-end`, `center`, `baseline`, or `stretch`.
-   *
-   * @example
-   * // Align the component to the center along the cross-axis:
-   * <Component $alignSelf="center" />
+   * $as: Shortcut for "alignSelf".
+   * Overrides the parent's alignItems for this specific component.
    */
-  $alignSelf?: ViewStyle['alignSelf'];
+  $as?: 'auto' | FlexAlignType;
 
   /**
    * Centers the component both horizontally and vertically within its parent.
@@ -99,15 +87,10 @@ export interface CenterProps {
   $centerY?: boolean;
 }
 
-/**
- * Interface for defining size-related properties for a component.
- * Extends `OverFlowTypes` to include overflow handling.
- */
-
 // Combined Text Props
 export interface AppTextProps
   extends TextStylingProps,
-    SpacingProps,
+    PaddingMarginProps,
     BorderProps,
     BackgroundProps,
     SizeProps {
@@ -117,7 +100,7 @@ export interface AppTextProps
 
 export interface AppTextInputProps
   extends TextStylingProps,
-    SpacingProps,
+    PaddingMarginProps,
     BorderProps,
     BackgroundProps,
     SizeProps {
@@ -142,7 +125,6 @@ interface TextBoxProp extends TextInputProps {
   placeholderTextColor?: string;
   secureTextEntry?: boolean;
   value?: string;
-  /////
   blurOnSubmit?: boolean;
   $alertType?: AlertType;
   $iconColor?: string;
@@ -181,7 +163,7 @@ export interface AppModalProps extends ModalProps {
 
 // Combined View Props
 export interface AppViewProps
-  extends SpacingProps,
+  extends PaddingMarginProps,
     BorderProps,
     BackgroundProps,
     CenterProps,
@@ -190,24 +172,12 @@ export interface AppViewProps
   style?: StyleProp<ViewStyle>; // style
 }
 
-// Source Props
-export interface SourceProps {
-  source: ImageProps['source'];
-}
-
-// Image Styling Props
-export interface ImageStylingProps {
-  $bor?: number;
-}
-
 export interface BoxSizeProps {
   $size?: number | string;
 }
 
 export interface CustomImageProp
-  extends SourceProps,
-    ImageStylingProps,
-    SpacingProps,
+  extends PaddingMarginProps,
     BorderProps,
     BackgroundProps,
     BoxSizeProps,
@@ -216,54 +186,128 @@ export interface CustomImageProp
 }
 
 export type CustomCircleProps = TouchableOpacityProps &
-  SpacingProps &
+  PaddingMarginProps &
   BoxSizeProps &
   CenterProps &
   BackgroundProps &
   BorderProps & {
     style?: StyleProp<ImageStyle>;
     children?: ReactNode;
-    // style
   };
 export type RowViewProps = TouchableOpacityProps &
   BorderProps &
   CenterProps &
   BackgroundProps &
-  SpacingProps &
+  PaddingMarginProps &
   SizeProps & {
+    /**
+     * $fw: Shorthand for "flexWrap".
+     * Accepts `"nowrap"`, `"wrap"`, or `"wrap-reverse"`.
+     */
     children?: ReactNode;
-    $gap?: ViewStyle['gap'];
-    $rowGap?: ViewStyle['rowGap'];
-    $colGap?: ViewStyle['columnGap'];
-    $flexWrap?: ViewStyle['flexWrap'];
-    $alignItems?: ViewStyle['alignItems'];
+    /**
+     * $fw: Shorthand for "flexWrap".
+     * Accepts `"nowrap"`, `"wrap"`, or `"wrap-reverse"`.
+     */
+    $fw?: ViewStyle['flexWrap'];
+
+    /**
+     * $g: Shorthand for "gap".
+     * Accepts `number` or `string` (e.g., `10` or `"1rem"`).
+     */
+    $g?: ViewStyle['gap'];
+
+    /**
+     * $rg: Shorthand for "rowGap".
+     * Accepts `number` or `string` (e.g., `15` or `"1em"`).
+     */
+    $rg?: ViewStyle['rowGap'];
+
+    /**
+     * $cg: Shorthand for "columnGap".
+     * Accepts `number` or `string` (e.g., `20` or `"2em"`).
+     */
+    $cg?: ViewStyle['columnGap'];
+
+    /**
+     * $ai: Shorthand for "alignItems".
+     * Accepts `"flex-start"`, `"flex-end"`, `"center"`, `"stretch"`, or `"baseline"`.
+     */
+    $ai?: ViewStyle['alignItems'];
+    /**
+     * $jc: Shorthand for "justifyContent".
+     * Accepts `"flex-start"`, `"flex-end"`, `"center"`, `"space-between"`, or `"space-around"`.
+     */
     $jc?: ViewStyle['justifyContent'];
+    /**
+     * $fs: Shorthand for "flex-start" for justifyContent.
+     * Accepts a `string` (default is `false`).
+     */
     $fs?: boolean;
-    $c?: boolean;
+    /**
+     * $c: Shorthand for "center" for justifyContent.
+     * Accepts a `string` (default is `false`).
+     */
+    $center?: boolean;
+    /**
+     * $fe: Shorthand for "flex-end" for justifyContent.
+     * Accepts a `string` (default is `false`).
+     */
     $fe?: boolean;
-    $sb?: boolean;
-    $se?: boolean;
-    $sa?: boolean;
+    /**
+     * $c: Shorthand for "space-between" for justifyContent.
+     * Accepts a `string` (default is `false`).
+     */
+    $spb?: boolean;
+    /**
+     * $c: Shorthand for "space-evenly" for justifyContent.
+     * Accepts a `string` (default is `false`).
+     */
+
+    $spe?: boolean;
+    /**
+     * $c: Shorthand for "space-around" for justifyContent.
+     * Accepts a `string` (default is `false`).
+     */
+    $spa?: boolean;
   };
 export type AbsoluteViewProps = TouchableOpacityProps &
   BorderProps &
   CenterProps &
   BackgroundProps &
   OverFlowTypes &
-  SpacingProps & {
+  PaddingMarginProps & {
     children?: ReactNode;
-    $zIndex?: number;
+    /**
+     * $z: Shorthand for "zIndex".
+     */
+    $z?: number;
+    /**
+     * $size: Shorthand for combined applied of "width" and "height" with same value .
+     */
     $size?: number | string;
+    /**
+     * $t: Shorthand for "top".
+     */
     $t?: number | string;
+    /**
+     * $b: Shorthand for "bottom".
+     */
     $b?: number | string;
+    /**
+     * $l: Shorthand for "left".
+     */
     $l?: number | string;
+    /**
+     * $r: Shorthand for "right".
+     */
     $r?: number | string;
   };
 
 export type AppButtonProps = TouchableOpacityProps &
   BorderProps &
   BackgroundProps &
-  SpacingProps & {
+  PaddingMarginProps & {
     $title?: string;
     onPress?: () => void;
     $loaderColor?: ColorSuggestion;

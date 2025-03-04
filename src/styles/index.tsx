@@ -172,9 +172,7 @@ export const styles = (value: any) =>
       ...(value?.$l !== undefined ? { left: value?.$l } : {}),
       ...(value?.$r !== undefined ? { right: value?.$r } : {}),
       ...(value?.$b !== undefined ? { bottom: value?.$b } : {}),
-      ...(value?.$zIndex !== undefined
-        ? { zIndex: value?.$zIndex }
-        : { zIndex: 1 }),
+      ...(value?.$z !== undefined ? { z: value?.$z } : { zIndex: 1 }),
       ...commonPadMadStyles(value),
       ...commonSizes(value, true),
       ...commonWidthHeight(value),

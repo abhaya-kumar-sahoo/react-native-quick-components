@@ -37,22 +37,16 @@ export default function App() {
         $boc="gray:50"
         $m={30}
         $bow={2}
-        $shadowColor="green:900"
-        $elev={10}
+        $sc="green:900"
+        $el={10}
         $overflow="hidden"
-        $shadowOpacity={1}
-        $shadowRadius={20}
-        $shadowOffset={{ width: -5, height: 1 }}
+        $sop={1}
+        $sr={20}
+        $sof={{ width: -5, height: 1 }}
         $bg="green:200"
+        $p={10}
       >
-        <AppText
-          $bold
-          $c="orange:800"
-          $ff="serif"
-          $lh={30}
-          $fs={30}
-          $ta="right"
-        >
+        <AppText $bold $c="orange:600" $lh={30} $fs={30} $ta="justify">
           AB
         </AppText>
         <CircleView $size={160} $bow={2} $boc="gray:100" $bg="green" />
@@ -69,7 +63,7 @@ export default function App() {
         placeholder="Enter Password"
         $inputType="password"
         secureTextEntry={true}
-        $inputStyle={{ color: 'black' }}
+        $inputStyle={{ color: 'red' }}
         $containerStyles={{ marginVertical: 10 }}
         onChangeText={() => {}}
       />
@@ -81,11 +75,11 @@ export default function App() {
         <AppText>ABHAYA</AppText>
         <BoxView />
       </RowView>
-      <RowView $se $bg="red">
+      <RowView $spe $bg="red">
         <AppText>ABHAYA</AppText>
         <AppText>ABHAYA</AppText>
       </RowView>
-      <ColView $jc="space-between">
+      <ColView $h={'10%'} $spa $bg="cyan:600">
         <AppText>ABHAYA</AppText>
         <VertSpace />
         <AppText>ABHAYA</AppText>

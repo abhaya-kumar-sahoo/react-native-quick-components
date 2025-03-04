@@ -1,216 +1,160 @@
-import type { HeightWidthTypes } from './h_w_types';
+import type { DimensionValue } from 'react-native';
 import type { OverFlowTypes } from './types';
 
 export interface SizeProps extends OverFlowTypes {
   /**
+   * $w: Shortcut for "width".
    * Specifies the width of the component.
-   * Accepts a `number` (e.g., `100`) or a `string` (e.g., `"50%"`).
-   *
-   * @example
-   * // Set width to 100px:
-   * <Component $w={100} />
-   *
-   * @example
-   * // Set width to 50%:
-   * <Component $w="50%" />
    */
-  $w?: HeightWidthTypes;
+  $w?: DimensionValue;
 
   /**
+   * $h: Shortcut for "height".
    * Specifies the height of the component.
-   * Accepts a `number` (e.g., `200`) or a `string` (e.g., `"75%"`).
-   *
-   * @example
-   * // Set height to 200px:
-   * <Component $h={200} />
-   *
-   * @example
-   * // Set height to 75%:
-   * <Component $h="75%" />
    */
-  $h?: HeightWidthTypes;
+  $h?: DimensionValue;
 
   /**
-   * Specifies the flex value of the component.
-   * Determines how a component will grow, shrink, or occupy space in a flex container.
-   *
-   * @example
-   * // Set flex value to 1 (occupy remaining space equally):
-   * <Component $flex={1} />
+   * $f: Shortcut for "flex".
+   * Sets the flex grow factor.
    */
-  $flex?: number;
+  $f?: number;
 
   /**
-   * Specifies the minimum width of the component.
-   * Accepts a `number` (e.g., `50`) or a `string` (e.g., `"25%"`).
-   *
-   * @example
-   * // Set minimum width to 50px:
-   * <Component $minW={50} />
+   * $maxh: Shortcut for "maxHeight".
+   * Defines the maximum height of the component.
    */
-  $minW?: number | string;
+  $maxh?: DimensionValue;
 
   /**
+   * $maxw: Shortcut for "maxWidth".
+   * Defines the maximum width of the component.
+   */
+  $maxw?: DimensionValue;
+
+  /**
+   * $minh: Shortcut for "minHeight".
    * Specifies the minimum height of the component.
-   * Accepts a `number` (e.g., `80`) or a `string` (e.g., `"20%"`).
-   *
-   * @example
-   * // Set minimum height to 80px:
-   * <Component $minH={80} />
    */
-  $minH?: number | string;
+  $minh?: DimensionValue;
 
   /**
-   * Specifies the maximum width of the component.
-   * Accepts a `number` (e.g., `300`) or a `string` (e.g., `"100%"`).
-   *
-   * @example
-   * // Set maximum width to 300px:
-   * <Component $maxW={300} />
+   * $minw: Shortcut for "minWidth".
+   * Specifies the minimum width of the component.
    */
-  $maxW?: number | string;
-
-  /**
-   * Specifies the maximum height of the component.
-   * Accepts a `number` (e.g., `400`) or a `string` (e.g., `"50%"`).
-   *
-   * @example
-   * // Set maximum height to 400px:
-   * <Component $maxH={400} />
-   */
-  $maxH?: number | string;
+  $minw?: DimensionValue;
 }
 
 /**
- * Interface for defining spacing-related properties for a component.
- * Includes shorthand and directional properties for padding and margin.
+ * PaddingMarginProps - Shorthand style props for margin and padding.
+ * Each property corresponds to a standard ViewStyle margin or padding prop.
  */
-export interface SpacingProps {
+export type PaddingMarginProps = {
   /**
-   * Specifies the overall padding for the component.
-   * Accepts a `number` value (e.g., `8`, `16`).
-   *
-   * @example
-   * // Set padding to 16px:
-   * <Component $p={16} />
+   * $m: Shortcut for "margin".
+   * Sets the margin on all sides.
    */
-  $p?: number;
+  $m?: DimensionValue;
 
   /**
-   * Specifies the left padding for the component.
-   *
-   * @example
-   * // Set left padding to 10px:
-   * <Component $pl={10} />
+   * $mb: Shortcut for "marginBottom".
+   * Specifies the margin at the bottom.
    */
-  $pl?: number;
+  $mb?: DimensionValue;
 
   /**
-   * Specifies the right padding for the component.
-   *
-   * @example
-   * // Set right padding to 12px:
-   * <Component $pr={12} />
+   * $me: Shortcut for "marginEnd".
+   * Specifies the margin at the end side.
    */
-  $pr?: number;
+  // $me?: DimensionValue;
 
   /**
-   * Specifies the top padding for the component.
-   *
-   * @example
-   * // Set top padding to 8px:
-   * <Component $pt={8} />
+   * $mh: Shortcut for "marginHorizontal".
+   * Sets the left and right margins.
    */
-  $pt?: number;
+  $mx?: DimensionValue;
 
   /**
-   * Specifies the bottom padding for the component.
-   *
-   * @example
-   * // Set bottom padding to 10px:
-   * <Component $pb={10} />
+   * $ml: Shortcut for "marginLeft".
+   * Specifies the margin on the left side.
    */
-  $pb?: number;
+  $ml?: DimensionValue;
 
   /**
-   * Specifies horizontal padding (left and right) for the component.
-   *
-   * @example
-   * // Set horizontal padding to 20px:
-   * <Component $px={20} />
+   * $mr: Shortcut for "marginRight".
+   * Specifies the margin on the right side.
    */
-  $px?: number;
+  $mr?: DimensionValue;
 
   /**
-   * Specifies vertical padding (top and bottom) for the component.
-   *
-   * @example
-   * // Set vertical padding to 15px:
-   * <Component $py={15} />
+   * $ms: Shortcut for "marginStart".
+   * Specifies the margin at the start side.
    */
-  $py?: number;
+  // $ms?: DimensionValue;
 
   /**
-   * Specifies the overall margin for the component.
-   * Accepts a `number` value.
-   *
-   * @example
-   * // Set margin to 12px:
-   * <Component $m={12} />
+   * $mt: Shortcut for "marginTop".
+   * Specifies the margin at the top.
    */
-  $m?: number;
+  $mt?: DimensionValue;
 
   /**
-   * Specifies the left margin for the component.
-   *
-   * @example
-   * // Set left margin to 8px:
-   * <Component $ml={8} />
+   * $mv: Shortcut for "marginVertical".
+   * Sets the top and bottom margins.
    */
-  $ml?: number;
+  $my?: DimensionValue;
 
   /**
-   * Specifies the bottom margin for the component.
-   *
-   * @example
-   * // Set bottom margin to 16px:
-   * <Component $mb={16} />
+   * $p: Shortcut for "padding".
+   * Sets the padding on all sides.
    */
-  $mb?: number;
+  $p?: DimensionValue;
 
   /**
-   * Specifies the top margin for the component.
-   *
-   * @example
-   * // Set top margin to 10px:
-   * <Component $mt={10} />
+   * $pb: Shortcut for "paddingBottom".
+   * Specifies the padding at the bottom.
    */
-  $mt?: number;
+  $pb?: DimensionValue;
 
   /**
-   * Specifies the right margin for the component.
-   *
-   * @example
-   * // Set right margin to 5px:
-   * <Component $mr={5} />
+   * $pe: Shortcut for "paddingEnd".
+   * Specifies the padding at the end side.
    */
-  $mr?: number;
+  // $pe?: DimensionValue;
 
   /**
-   * Specifies horizontal margin (left and right) for the component.
-   *
-   * @example
-   * // Set horizontal margin to 18px:
-   * <Component $mx={18} />
+   * $ph: Shortcut for "paddingHorizontal".
+   * Sets the left and right padding.
    */
-  $mx?: number;
+  $px?: DimensionValue;
 
   /**
-   * Specifies vertical margin (top and bottom) for the component.
-   *
-   * @example
-   * // Set vertical margin to 10px:
-   * <Component $my={10} />
+   * $pl: Shortcut for "paddingLeft".
+   * Specifies the padding on the left side.
    */
-  $my?: number;
-}
+  $pl?: DimensionValue;
+
+  /**
+   * $pr: Shortcut for "paddingRight".
+   * Specifies the padding on the right side.
+   */
+  $pr?: DimensionValue;
+
+  /**
+   * $ps: Shortcut for "paddingStart".
+   * Specifies the padding at the start side.
+   */
+  // $ps?: DimensionValue;
+
+  /**
+   * $pt: Shortcut for "paddingTop".
+   * Specifies the padding at the top.
+   */
+  $pt?: DimensionValue;
+
+  /**
+   * $pv: Shortcut for "paddingVertical".
+   * Sets the top and bottom padding.
+   */
+  $py?: DimensionValue;
+};

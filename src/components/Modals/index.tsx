@@ -27,7 +27,7 @@ const AppModal: React.FC<AppModalProps> = ({
       <AppView
         $center
         $mb={60}
-        $flex={1}
+        $f={1}
         $bg={$transparentColor}
         style={[$containerStyle]}
       >

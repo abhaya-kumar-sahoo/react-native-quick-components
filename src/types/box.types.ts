@@ -1,128 +1,79 @@
 import type { ViewStyle } from 'react-native';
 
 /**
- * Interface for customizing layout, spacing, and shadow properties in a flexible component.
- * Designed to extend or replace native `ViewStyle` properties for advanced use cases.
+ * CustomBoxPropsShort - Shorthand aliases for layout, spacing, and shadow properties.
+ * These properties map to standard `ViewStyle` props.
  */
 export interface CustomBoxProps {
   /**
-   * Defines the initial main size of a flex item.
-   * Accepts `number` or `string` values (e.g., `50` or `"50%"`).
-   *
-   * @example
-   * // Set flex-basis to 50%:
-   * <CustomComponent $flexBasis="50%" />
+   * $fb: Shorthand for "flexBasis".
+   * Accepts `number` or `string` (e.g., `50` or `"50%"`).
    */
-  $flexBasis?: ViewStyle['flexBasis'];
+  $fb?: ViewStyle['flexBasis'];
 
   /**
-   * Specifies how much a flex item will grow relative to the rest of the flex items.
-   * Accepts a `number` value (default is `0`).
-   *
-   * @example
-   * // Allow item to grow twice as much as others:
-   * <CustomComponent $flexGrow={2} />
+   * $fg: Shorthand for "flexGrow".
+   * Accepts a `number` (default is `0`).
    */
-  $flexGrow?: ViewStyle['flexGrow'];
+  $fg?: ViewStyle['flexGrow'];
 
   /**
-   * Specifies how much a flex item will shrink relative to the rest of the flex items.
-   * Accepts a `number` value (default is `1`).
-   *
-   * @example
-   * // Prevent shrinking of this item:
-   * <CustomComponent $flexShrink={0} />
+   * $fs: Shorthand for "flexShrink".
+   * Accepts a `number` (default is `1`).
    */
-  $flexShrink?: ViewStyle['flexShrink'];
+  $fs?: ViewStyle['flexShrink'];
 
   /**
-   * Defines whether flex container items should wrap or not.
-   * Accepts `nowrap`, `wrap`, or `wrap-reverse`.
-   *
-   * @example
-   * // Enable wrapping of items:
-   * <CustomComponent $flexWrap="wrap" />
+   * $fw: Shorthand for "flexWrap".
+   * Accepts `"nowrap"`, `"wrap"`, or `"wrap-reverse"`.
    */
-  $flexWrap?: ViewStyle['flexWrap'];
+  $fw?: ViewStyle['flexWrap'];
 
   /**
-   * Specifies the gap between flex container items.
-   * Accepts `number` or `string` values (e.g., `10` or `"1rem"`).
-   * Note: Supported only in React Native versions that support `gap`.
-   *
-   * @example
-   * // Add a gap of 10px between items:
-   * <CustomComponent $gap={10} />
+   * $g: Shorthand for "gap".
+   * Accepts `number` or `string` (e.g., `10` or `"1rem"`).
    */
-  $gap?: ViewStyle['gap'];
+  $g?: ViewStyle['gap'];
 
   /**
-   * Defines the gap between rows in a grid or flex container.
-   * Accepts `number` or `string` values (e.g., `15` or `"1em"`).
-   *
-   * @example
-   * // Add a row gap of 15px:
-   * <CustomComponent $rowGap={15} />
+   * $rg: Shorthand for "rowGap".
+   * Accepts `number` or `string` (e.g., `15` or `"1em"`).
    */
-  $rowGap?: ViewStyle['rowGap'];
+  $rg?: ViewStyle['rowGap'];
 
   /**
-   * Defines the gap between columns in a grid or flex container.
-   * Accepts `number` or `string` values (e.g., `20` or `"2em"`).
-   *
-   * @example
-   * // Add a column gap of 20px:
-   * <CustomComponent $colGap={20} />
+   * $cg: Shorthand for "columnGap".
+   * Accepts `number` or `string` (e.g., `20` or `"2em"`).
    */
-  $colGap?: ViewStyle['columnGap'];
+  $cg?: ViewStyle['columnGap'];
 
   /**
-   * Sets the elevation for shadow effects on Android.
-   * Accepts a `number` value (higher numbers increase shadow depth).
-   *
-   * @example
-   * // Add elevation for shadow effect:
-   * <CustomComponent $elev={5} />
+   * $el: Shorthand for "elevation".
+   * Accepts a `number` (higher numbers increase shadow depth).
    */
-  $elev?: number;
+  $el?: number;
 
   /**
-   * Specifies the color of the shadow.
-   * Accepts any valid color value (e.g., `"#000"`, `"rgba(0,0,0,0.5)"`).
-   *
-   * @example
-   * // Set shadow color to semi-transparent black:
-   * <CustomComponent $shadowColor="rgba(0,0,0,0.5)" />
+   * $sc: Shorthand for "shadowColor".
+   * Accepts valid color values (e.g., `"#000"` or `"rgba(0,0,0,0.5)"`).
    */
-  $shadowColor?: string;
+  $sc?: string;
 
   /**
-   * Defines the offset of the shadow.
+   * $so: Shorthand for "shadowOffset".
    * Accepts an object with `width` and `height` values.
-   *
-   * @example
-   * // Set horizontal and vertical shadow offset:
-   * <CustomComponent $shadowOffset={{ width: 2, height: 4 }} />
    */
-  $shadowOffset?: ViewStyle['shadowOffset'];
+  $sof?: ViewStyle['shadowOffset'];
 
   /**
-   * Sets the blur radius of the shadow.
-   * Accepts a `number` value (higher numbers increase blur size).
-   *
-   * @example
-   * // Add a shadow blur radius of 10:
-   * <CustomComponent $shadowRadius={10} />
+   * $sr: Shorthand for "shadowRadius".
+   * Accepts a `number` (higher numbers increase blur).
    */
-  $shadowRadius?: number;
+  $sr?: number;
 
   /**
-   * Specifies the opacity of the shadow.
+   * $sop: Shorthand for "shadowOpacity".
    * Accepts a `number` between `0` and `1`.
-   *
-   * @example
-   * // Set shadow opacity to 50%:
-   * <CustomComponent $shadowOpacity={0.5} />
    */
-  $shadowOpacity?: number;
+  $sop?: number;
 }

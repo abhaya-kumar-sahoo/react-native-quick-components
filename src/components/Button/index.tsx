@@ -61,7 +61,7 @@ export const AppButton: React.FC<AppButtonProps> = ({
           $t={0}
           $l={0}
           $r={0}
-          $zIndex={999999}
+          $z={999999}
           $overflow="hidden"
           $center
         >

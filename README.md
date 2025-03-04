@@ -91,32 +91,32 @@ export default function App() {
     <FlexView>
       <ScrollView>
         <AbsoluteBox
-          _b={0}
-          _r={0}
+          $b={0}
+          $r={0}
           disabled={false}
-          _bg="gray"
+          $bg="gray"
           onPress={() => {}}
-          _bor={50}
-          _bow={10}
-          _boc="yellow:800"
+          $bor={50}
+          $bow={10}
+          $boc="yellow:800"
         >
           <AppButton
-            _bg="red"
-            _title="Press me"
-            _px={19}
-            _boc="white"
-            _textStyle={{ px: 10, py: 5, bold: '900' }}
-            _bow={2}
-            _c="gray:900"
-            _leftComponent={<appText>FF</appText>}
-            _rightComponent={<appText>FF</appText>}
+            $bg="red"
+            $title="Press me"
+            $px={19}
+            $boc="white"
+            $textStyle={{ $px: 10, $py: 5, $bold: '900' }}
+            $bow={2}
+            $c="gray:900"
+            $leftComponent={<AppText>FF</AppText>}
+            $rightComponent={<AppText>FF</AppText>}
             onPress={() => {
               Alert.alert('Press me');
             }}
           />
         </AbsoluteBox>
 
-        <CircleView _boc="cyan:500" _bow={4} _size={100} _bg="teal" />
+        <CircleView $boc="cyan:500" $bow={4} $size={100} $bg="teal" />
        
       </ScrollView>
     </FlexView>
@@ -130,7 +130,7 @@ export default function App() {
 - `AbsoluteBox`: An absolutely positioned view component. Use this for placing elements at specific coordinates relative to their closest positioned ancestor.
 - `AppButton`: Customizable button component. It can be styled and configured to handle various button states.
 - `AppImage`: Customizable image component. Supports different image sources and configurations such as resizing, scaling, and styling.
-- `AappTextInput`: Customizable text input component. Used for capturing user input, supports various styles, placeholder, and input configurations.
+- `AapTextInput`: Customizable text input component. Used for capturing user input, supports various styles, placeholder, and input configurations.
 - `AppView`: Customizable view component. Provides flexible layout and styling options, commonly used as a container for other elements.
 - `BoxView`: A customizable box-style view component, often used for creating bordered or background-colored boxes.
 - `CircleView`: A view component that creates a circular shape, typically used for avatars or circular buttons.
@@ -143,80 +143,85 @@ export default function App() {
 
 ### 1. **Color (Text and Border)**
 
-- `_c`: Color suggestion for text or border.
-- `_bg`: Background color.
-- `_boc`: Border color.
+- `$c`: Color suggestion for text or border.
+- `$bg`: Background color.
+- `$boc`: Border color.
 
 ### 2. **Font and Text Styling**
 
-- `_fontFamily`: Font family.
-- `_fontSize`: Font size.
-- `_textAline`: Text alignment (align).
-- `_lineHeight`: Line height.
-- `_bold`: Font weight.
+- `$ff`: Font family.
+- `$fs`: Font size.
+- `$ta`: Text alignment (align).
+- `$lh`: Line height.
+- `$bold`: Font weight.
 
 ### 3. **Padding (Spacing)**
 
-- `_p`: Padding.
-- `_pl`: Padding left.
-- `_pr`: Padding right.
-- `_pt`: Padding top.
-- `_pb`: Padding bottom.
-- `_px`: Padding horizontal.
-- `_py`: Padding vertical.
+- `$p`: Padding.
+- `$pl`: Padding left.
+- `$pr`: Padding right.
+- `$pt`: Padding top.
+- `$pb`: Padding bottom.
+- `$px`: Padding horizontal.
+- `$py`: Padding vertical.
 
 ### 4. **Margin (Spacing)**
 
-- `_m`: Margin.
-- `_ml`: Margin left.
-- `_mb`: Margin bottom.
-- `_mt`: Margin top.
-- `_mr`: Margin right.
-- `_mx`: Margin horizontal.
-- `_my`: Margin vertical.
+- `$m`: Margin.
+- `$ml`: Margin left.
+- `$mb`: Margin bottom.
+- `$mt`: Margin top.
+- `$mr`: Margin right.
+- `$mx`: Margin horizontal.
+- `$my`: Margin vertical.
 
 ### 5. **Border**
 
-- `_bor`: Border radius.
-- `_bow`: Border width.
-- `_boC`: Border color.
+- `$bor`: Border radius.
+- `$bow`: Border width.
+- `$boc`: Border color.
 
 ### 6. **Size**
 
-- `_w`: Width.
-- `_h`: Height.
-- `_size`: Box size (width and height combined).
-- `_flex`: Flex value.
+- `$w`: Width.
+- `$h`: Height.
+- `$size`: Box size (width and height combined).
+- `$f`: Flex value.
+- `$minH`: - Minimum height.
+- `$minW`: - Minimum width.
+- `$maxH`: - Maximum height.
+- `$maxW`: - Maximum width.
+
 
 
 ### 7. **Positioning (For Absolute or Relative Positioning)**
 
-- `_t`: Top.
-- `_b`: Bottom.
-- `_l`: Left.
-- `_r`: Right.
+- `$t`: Top.
+- `$b`: Bottom.
+- `$l`: Left.
+- `$r`: Right.
 
 ### 8. **Justify and Align**
 
-- `_js`: Justify content.
-- `_alignItem`: Align items.
+- `$js`: Justify content.
+- `$au`: Align items.
+- `$as`: Align self.
 
 ### 9. **Centering**
 
-- `_center`: Center both horizontally and vertically.
-- `_centerX`: Center horizontally.
-- `_centerY`: Center vertically.
-- `_alignSelf`: Align self.
+- `$center`: Center both horizontally and vertically.
+- `$centerX`: Center horizontally.
+- `$centerY`: Center vertically.
 
 ### 10. **Flexbox**
 
-- `_flexBasis`: Defines the flex basis.
-- `_flexGrow`: Defines the flex grow.
-- `_flexShrink`: Defines the flex shrink.
-- `_flexWrap`: Flex wrapping.
-- `_gap`: Gap between items.
-- `_rowGap`: Gap between rows.
-- `_colGap`: Gap between columns.
+- `$fb`: Defines the flex basis.
+- `$fg`: Defines the flex grow.
+- `$fs`: Defines the flex shrink.
+- `$fw`: Flex wrapping (flexWrap).
+- `$g`: Gap between items (gap).
+- `$rg`: Gap between rows (rowGap).
+- `$cg`: Gap between columns (columnGap).
 
 
 ## Props

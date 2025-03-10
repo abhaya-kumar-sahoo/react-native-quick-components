@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { TextInput, View } from 'react-native';
 import type { CustomTextInputProps } from '../../types/types';

@@ -2,6 +2,7 @@ import type { ViewStyle } from 'react-native';
 import { config } from '../config/index';
 import { DefaultColors } from '../types/colors';
 import { moderateScale, scale, verticalScale } from '../utils/size';
+import { fontSizeMapping, type FontSizeTypes } from '../types/text.types';
 
 const commonPadMadStyles = (value: any = {}) => {
   const getScaledValue = (key: string, scaleFn: any) =>
@@ -109,7 +110,7 @@ const commonJcAlineFlexStyle = (value?: any) => ({
             ? 'space-evenly'
             : value?.$spa
               ? 'space-around'
-              : 'space-start',
+              : 'flex-start',
 
   ...(value?.$alignItems !== undefined
     ? { alignItems: value?.$alignItems }
@@ -185,9 +186,15 @@ const commonSizes = (value: any = {}, isOverflow?: boolean) => {
   };
 };
 
+export function getFontSize(fontSize: FontSizeTypes): number {
+  if (typeof fontSize === 'number') {
+    return scale(fontSize);
+  }
+  return scale(fontSizeMapping[fontSize]);
+}
 const commonTextStyles = (value?: any) => ({
   ...(value?.$fs !== undefined
-    ? { fontSize: scale(value.$fs) }
+    ? { fontSize: getFontSize(value.$fs) }
     : config.defaultFontSize
       ? { fontSize: config.defaultFontSize }
       : {}),

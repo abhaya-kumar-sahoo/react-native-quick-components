@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import type { AppButtonProps } from '../../types/types';
 import React from 'react';

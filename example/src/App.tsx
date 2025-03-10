@@ -24,6 +24,7 @@ export default function App() {
       defaultBackgroundColor: 'black',
       defaultTextColor: 'white',
       defaultFontSize: 16,
+      enableResponsive: true,
     });
   }, []);
 
@@ -46,7 +47,7 @@ export default function App() {
         $bg="green:200"
         $p={10}
       >
-        <AppText $bold $c="orange:600" $lh={30} $fs={30} $ta="justify">
+        <AppText $bold $c="orange:600" $lh={0} $fs={'lg'} $ta="justify">
           AB
         </AppText>
         <CircleView $size={160} $bow={2} $boc="gray:100" $bg="green" />

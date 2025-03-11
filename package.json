@@ -1,12 +1,12 @@
 {
   "name": "react-native-quick-components",
-  "version": "0.1.11",
+  "version": "0.1.11-beta.0",
   "description": "Reusable React Native components and utilities created by Abhaya",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
   "types": "lib/typescript/src/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "react-native": "lib/commonjs/index.js",
+  "source": "lib/module/index.js",
   "files": [
     "lib/"
   ],

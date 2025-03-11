@@ -1,8 +1,0 @@
-# Exclude source code and examples
-src/
-example/
-
-# Exclude config and meta files
-*.config.js
-*.lock
-.gitignore

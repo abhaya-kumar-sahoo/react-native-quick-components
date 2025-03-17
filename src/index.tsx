@@ -4,19 +4,19 @@ import { BoxView } from './components/Box';
 import { AppImage } from './components/Image';
 import { AppView } from './components/View';
 import { AppButton } from './components/Button';
-import { AppTextInput } from './components/TextInput';
+// import { AppTextInput } from './components/TextInput';
 import { CircleView } from './components/Circle';
 import { ColView, RowView } from './components/Flex/row.col.index';
 import { AbsoluteBox } from './components/Absolute';
 import { FlexView } from './components/Flex/flex.index';
 import { FlexSafeView } from './components/Flex/flex.safearea.index';
 import { Divider } from './components/Divider';
-import TextInputBox from './components/TextInput/PasswordInput';
+// import TextInputBox from './components/TextInput/PasswordInput';
 import { VertSpace, HorizSpace } from './utils';
 import { CentreView } from './components/Box/CentreView';
 // Config
 import { defaultConfig } from './config';
-import AppModal from './components/Modals/index';
+// import AppModal from './components/Modals/index';
 import { fontSizePct, fontSizeScreenHeight } from './utils/responsive_fontsize';
 import { isIphoneX } from './utils/isIphoneX';
 // Platform Utilities
@@ -48,7 +48,7 @@ export {
   AppImage,
   AppView,
   AppButton,
-  AppTextInput,
+  // AppTextInput,
   CircleView,
   ColView,
   RowView,
@@ -56,10 +56,10 @@ export {
   FlexView,
   FlexSafeView,
   Divider,
-  TextInputBox,
+  // TextInputBox,
   VertSpace,
   HorizSpace,
-  AppModal,
+  // AppModal,
   CentreView,
 };
 

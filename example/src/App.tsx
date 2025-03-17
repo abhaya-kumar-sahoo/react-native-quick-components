@@ -6,7 +6,6 @@ import {
   ColView,
   Divider,
   FlexSafeView,
-  TextInputBox,
   AbsoluteBox,
   AppButton,
   CircleView,
@@ -60,14 +59,6 @@ export default function App() {
           <AppText>Absolute</AppText>
         </AppView>
       </AbsoluteBox>
-      <TextInputBox
-        placeholder="Enter Password"
-        $inputType="password"
-        secureTextEntry={true}
-        $inputStyle={{ color: 'red' }}
-        $containerStyles={{ marginVertical: 10 }}
-        onChangeText={() => {}}
-      />
 
       <Divider $c="lime:800" $h={1} $w={100} $bor={10} />
       <RowView $fe>

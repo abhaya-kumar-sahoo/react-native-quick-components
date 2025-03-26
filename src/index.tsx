@@ -19,6 +19,15 @@ import { defaultConfig } from './config';
 // import AppModal from './components/Modals/index';
 import { fontSizePct, fontSizeScreenHeight } from './utils/responsive_fontsize';
 import { isIphoneX } from './utils/isIphoneX';
+import { AppSwitch } from './Animated/Switch/CustomSwitch';
+import {
+  EyeIcon,
+  CloseIcon,
+  EmailIcon,
+  EyeClosedIcon,
+  PasswordIcon,
+  PhoneIcon,
+} from './assets/icons/icons';
 // Platform Utilities
 import {
   isIOS,
@@ -41,6 +50,16 @@ import {
   verticalScale,
 } from './utils/size';
 
+// Export Size Icons
+export {
+  EyeIcon,
+  CloseIcon,
+  EmailIcon,
+  EyeClosedIcon,
+  PasswordIcon,
+  PhoneIcon,
+};
+
 // Export Components
 export {
   AppText,
@@ -48,7 +67,7 @@ export {
   AppImage,
   AppView,
   AppButton,
-  // AppTextInput,
+  // // AppTextInput,
   CircleView,
   ColView,
   RowView,
@@ -61,9 +80,10 @@ export {
   HorizSpace,
   // AppModal,
   CentreView,
+  AppSwitch,
 };
 
-// Export Config
+// // Export Config
 export { defaultConfig };
 
 // Export Platform Utilities

@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppView } from '../components/View';
 import type { HeightWidthTypes } from '../types/h_w_types';
 

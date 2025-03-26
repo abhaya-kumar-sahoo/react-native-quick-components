@@ -7,7 +7,7 @@ import { AbsoluteBox } from '../Absolute';
 export const AppButton: React.FC<AppButtonProps> = ({
   $title = 'Press',
   onPress,
-  $textStyle,
+  $textStyle = { $fs: 15.5 },
   $leftComponent,
   $rightComponent,
   $bg = 'green',

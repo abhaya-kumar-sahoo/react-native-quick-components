@@ -2,7 +2,6 @@ import React from 'react';
 import { Modal } from 'react-native';
 import { AppView } from '../View';
 import { BoxView } from '../Box';
-import { XCircleIcon, XMarkIcon } from 'react-native-heroicons/solid';
 import { RowView } from '../Flex/row.col.index';
 import type { AppModalProps } from '../../types/types';
 
@@ -41,11 +40,6 @@ const AppModal: React.FC<AppModalProps> = ({
           {$showCancelIcon && (
             <RowView $pr={6} $pt={6} onPress={$onCloseModal}>
               <AppView />
-              {$circleCancel ? (
-                <XCircleIcon color={$iconColor} size={$iconSize} />
-              ) : (
-                <XMarkIcon color={$iconColor} size={$iconSize} />
-              )}
             </RowView>
           )}
           {children}

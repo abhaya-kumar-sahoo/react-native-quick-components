@@ -1,17 +1,17 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect } from 'react';
 import {
+  AppSwitch,
   AppText,
+  defaultConfig,
   FlexSafeView,
   SCREEN_H,
-  defaultConfig,
-  AppSwitch,
-} from "react-native-quick-components";
+} from 'react-native-quick-components';
 
 export default function App() {
   useLayoutEffect(() => {
     defaultConfig({
-      defaultBackgroundColor: "black",
-      defaultTextColor: "white",
+      defaultBackgroundColor: 'black',
+      defaultTextColor: 'white',
     });
   }, []);
   return (

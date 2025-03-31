@@ -1,21 +1,52 @@
 {
   "name": "react-native-quick-components",
-  "version": "0.1.11-beta.0",
-  "description": "Reusable React Native components and utilities created by Abhaya",
-  "main": "lib/commonjs/index.js",
-  "module": "lib/module/index.js",
-  "types": "lib/typescript/src/index.d.ts",
-  "react-native": "lib/commonjs/index.js",
-  "source": "lib/module/index.js",
+  "version": "0.1.11-beta.3",
+  "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://a.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhaya-kumar-sahoo/react-native-quick-components.git"
+  },
+  "source": "./lib/commonjs/index.js",
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/module/index.js",
+  "types": "./lib/typescript/module/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/typescript/module/src/index.d.ts",
+        "default": "./lib/module/index.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/index.d.ts",
+        "default": "./lib/commonjs/index.js"
+      }
+    }
+  },
   "files": [
-    "lib/"
+    "!src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
   ],
   "scripts": {
     "example": "yarn workspace react-native-quick-components-example",
     "test": "jest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "clean": "del-cli lib",
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
     "release": "release-it"
   },
@@ -24,11 +55,6 @@
     "ios",
     "android"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abhaya-kumar-sahoo/react-native-quick-components.git"
-  },
-  "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://a.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/abhaya-kumar-sahoo/react-native-quick-components/issues"
@@ -58,9 +84,6 @@
     "release-it": "^17.10.0",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
-  },
-  "resolutions": {
-    "@types/react": "^18.2.44"
   },
   "resolutions": {
     "@types/react": "^18.2.44"
@@ -98,7 +121,9 @@
     },
     "plugins": {
       "@release-it/conventional-changelog": {
-        "preset": "angular"
+        "preset": {
+          "name": "angular"
+        }
       }
     }
   },
@@ -159,8 +184,26 @@
       ]
     ]
   },
+  "codegenConfig": {
+    "name": "RNQuickComponentsViewSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
+    "android": {
+      "javaPackageName": "com.quickcomponents"
+    },
+    "includesGeneratedCode": true
+  },
+  "create-react-native-library": {
+    "languages": "kotlin-objc",
+    "type": "fabric-view",
+    "version": "0.48.5"
+  },
   "dependencies": {
-    "react-native-heroicons": "^4.0.0",
+    "react-native-reanimated": "^3.17.1",
     "react-native-svg": "^15.11.2"
   }
 }

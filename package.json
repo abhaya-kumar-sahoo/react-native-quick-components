@@ -1,7 +1,8 @@
 {
   "name": "react-native-quick-components",
-  "version": "0.1.11-beta.4",
-  "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://a.com)",
+  "description": "A set of quick and reusable React Native components.",
+  "version": "0.1.11-beta.5",
+  "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://github.com/abhaya-kumar-sahoo)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abhaya-kumar-sahoo/react-native-quick-components.git"

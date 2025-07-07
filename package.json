@@ -1,30 +1,19 @@
 {
   "name": "react-native-quick-components",
-  "description": "A set of quick and reusable React Native components.",
-  "version": "0.1.11-beta.5",
-  "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://github.com/abhaya-kumar-sahoo)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abhaya-kumar-sahoo/react-native-quick-components.git"
-  },
-  "source": "./lib/commonjs/index.js",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/module/index.js",
-  "types": "./lib/typescript/module/src/index.d.ts",
+  "version": "0.1.11-beta.6",
+  "description": "QUICK COMPONENTS",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./lib/typescript/module/src/index.d.ts",
-        "default": "./lib/module/index.js"
-      },
-      "require": {
-        "types": "./lib/typescript/commonjs/src/index.d.ts",
-        "default": "./lib/commonjs/index.js"
-      }
-    }
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "!src",
+    "src",
     "lib",
     "android",
     "ios",
@@ -47,15 +36,20 @@
     "test": "jest",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it --only-version"
   },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhaya-kumar-sahoo/react-native-quick-components.git"
+  },
+  "author": "Abhaya <61579704+abhaya-kumar-sahoo@users.noreply.github.com> (https://github.com/abhaya-kumar-sahoo)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/abhaya-kumar-sahoo/react-native-quick-components/issues"
@@ -66,28 +60,31 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.6.0",
+    "@eslint/compat": "^1.2.7",
+    "@eslint/eslintrc": "^3.3.0",
+    "@eslint/js": "^9.22.0",
     "@evilmartians/lefthook": "^1.5.0",
-    "@react-native-community/cli": "15.0.1",
-    "@react-native/eslint-config": "^0.73.1",
+    "@react-native/babel-preset": "0.78.2",
+    "@react-native/eslint-config": "^0.78.0",
     "@release-it/conventional-changelog": "^9.0.2",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react-native": "^13.2.0",
     "@types/jest": "^29.5.5",
-    "@types/react": "^18.2.44",
+    "@types/react": "^19.0.12",
+    "arktype": "1.0.29-alpha",
     "commitlint": "^19.6.1",
     "del-cli": "^5.1.0",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "jest": "^29.7.0",
     "prettier": "^3.0.3",
     "react": "19.0.0",
-    "react-native": "0.78.1",
-    "react-native-builder-bob": "^0.38.0",
+    "react-native": "0.79.4",
+    "react-native-builder-bob": "^0.40.12",
+    "react-test-renderer": "^19.0.0",
     "release-it": "^17.10.0",
-    "turbo": "^1.10.7",
-    "typescript": "^5.2.2"
-  },
-  "resolutions": {
-    "@types/react": "^18.2.44"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "react": "*",
@@ -102,6 +99,19 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
+    ],
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "text",
+      "lcov"
     ]
   },
   "commitlint": {
@@ -128,30 +138,6 @@
       }
     }
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native",
-      "prettier"
-    ],
-    "rules": {
-      "react/react-in-jsx-scope": "off",
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -163,13 +149,6 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "codegen",
-      [
-        "commonjs",
-        {
-          "esm": true
-        }
-      ],
       [
         "module",
         {
@@ -179,32 +158,14 @@
       [
         "typescript",
         {
-          "project": "tsconfig.build.json",
-          "esm": true
+          "project": "tsconfig.build.json"
         }
       ]
     ]
   },
-  "codegenConfig": {
-    "name": "RNQuickComponentsViewSpec",
-    "type": "all",
-    "jsSrcsDir": "src",
-    "outputDir": {
-      "ios": "ios/generated",
-      "android": "android/generated"
-    },
-    "android": {
-      "javaPackageName": "com.quickcomponents"
-    },
-    "includesGeneratedCode": true
-  },
   "create-react-native-library": {
-    "languages": "kotlin-objc",
-    "type": "fabric-view",
-    "version": "0.48.5"
-  },
-  "dependencies": {
-    "react-native-reanimated": "^3.17.1",
-    "react-native-svg": "^15.11.2"
+    "languages": "js",
+    "type": "library",
+    "version": "0.51.1"
   }
 }

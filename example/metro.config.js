@@ -1,19 +1,22 @@
 const path = require('path');
-const { getDefaultConfig } = require('@react-native/metro-config');
-const { getConfig } = require('react-native-builder-bob/metro-config');
-const pkg = require('../package.json');
-const {
-  wrapWithReanimatedMetroConfig,
-} = require('react-native-reanimated/metro-config');
+const { getDefaultConfig } = require('@expo/metro-config');
 
 const root = path.resolve(__dirname, '..');
 
-// Get the base Metro configuration
-const baseConfig = getConfig(getDefaultConfig(__dirname), {
-  root,
-  pkg,
-  project: __dirname,
-});
+/**
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
+ *
+ * @type {import('metro-config').MetroConfig}
+ */
+module.exports = (async () => {
+  const { withMetroConfig } = await import('react-native-monorepo-config');
+  const config = withMetroConfig(getDefaultConfig(__dirname), {
+    root,
+    dirname: __dirname,
+  });
 
-// Wrap the base config with Reanimated's Metro config and export it
-module.exports = wrapWithReanimatedMetroConfig(baseConfig);
+  config.resolver.unstable_enablePackageExports = true;
+
+  return config;
+})();

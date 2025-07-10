@@ -1,6 +1,6 @@
 {
   "name": "react-native-quick-components",
-  "version": "0.1.11-beta.6",
+  "version": "0.2.0",
   "description": "QUICK COMPONENTS",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",

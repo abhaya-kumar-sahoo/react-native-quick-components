@@ -1,6 +1,6 @@
 {
   "name": "react-native-quick-components",
-  "version": "0.2.0",
+  "version": "0.2.0-beta.1",
   "description": "QUICK COMPONENTS",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -13,11 +13,11 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "src",
     "lib",
     "android",
     "ios",
     "cpp",
+    "src",
     "*.podspec",
     "react-native.config.js",
     "!ios/build",

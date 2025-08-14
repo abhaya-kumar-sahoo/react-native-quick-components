@@ -59,24 +59,112 @@ const shadowStyles: Record<string, ViewStyle | undefined> = {
 };
 
 // ===================
+// Default Values
+// ===================
+const defaultSpacing = {
+  'xs': 4,
+  'sm': 8,
+  'md': 16,
+  'lg': 24,
+  'xl': 32,
+  '2xl': 48,
+  '3xl': 64,
+  '4xl': 80,
+  '5xl': 96,
+  '6xl': 128,
+};
+
+const defaultRadius = {
+  'none': 0,
+  'xs': 2,
+  'sm': 4,
+  'md': 8,
+  'lg': 12,
+  'xl': 16,
+  '2xl': 20,
+  '3xl': 24,
+  'full': 9999,
+};
+
+const defaultFontSizes = {
+  'xs': 12,
+  'sm': 14,
+  'base': 16,
+  'lg': 18,
+  'xl': 20,
+  '2xl': 24,
+  '3xl': 30,
+  '4xl': 36,
+  '5xl': 48,
+  '6xl': 60,
+  '7xl': 72,
+  '8xl': 96,
+  '9xl': 128,
+};
+
+const defaultFontWeights = {
+  thin: '100',
+  extralight: '200',
+  light: '300',
+  normal: '400',
+  medium: '500',
+  semibold: '600',
+  bold: '700',
+  extrabold: '800',
+  black: '900',
+};
+
+// ===================
+// Resolution Functions
+// ===================
+const resolveSpacing = (spacing: any): any => {
+  if (typeof spacing === 'string' && spacing in defaultSpacing) {
+    return defaultSpacing[spacing as keyof typeof defaultSpacing];
+  }
+  return spacing;
+};
+
+const resolveRadius = (radius: any): any => {
+  if (typeof radius === 'string' && radius in defaultRadius) {
+    return defaultRadius[radius as keyof typeof defaultRadius];
+  }
+  return radius;
+};
+
+const resolveFontSize = (size: any): any => {
+  if (typeof size === 'string' && size in defaultFontSizes) {
+    return defaultFontSizes[size as keyof typeof defaultFontSizes];
+  }
+  return size;
+};
+
+const resolveFontWeight = (weight: any): any => {
+  if (typeof weight === 'string' && weight in defaultFontWeights) {
+    return defaultFontWeights[weight as keyof typeof defaultFontWeights];
+  }
+  return weight;
+};
+
+// ===================
 // Shared Mappers
 // ===================
 const applySpacing = (props: any, style: any) => {
-  if (props.p !== undefined) style.padding = props.p;
-  if (props.px !== undefined) style.paddingHorizontal = props.px;
-  if (props.py !== undefined) style.paddingVertical = props.py;
-  if (props.pt !== undefined) style.paddingTop = props.pt;
-  if (props.pb !== undefined) style.paddingBottom = props.pb;
-  if (props.pl !== undefined) style.paddingLeft = props.pl;
-  if (props.pr !== undefined) style.paddingRight = props.pr;
+  if (props.p !== undefined) style.padding = resolveSpacing(props.p);
+  if (props.px !== undefined)
+    style.paddingHorizontal = resolveSpacing(props.px);
+  if (props.py !== undefined) style.paddingVertical = resolveSpacing(props.py);
+  if (props.pt !== undefined) style.paddingTop = resolveSpacing(props.pt);
+  if (props.pb !== undefined) style.paddingBottom = resolveSpacing(props.pb);
+  if (props.pl !== undefined) style.paddingLeft = resolveSpacing(props.pl);
+  if (props.pr !== undefined) style.paddingRight = resolveSpacing(props.pr);
 
-  if (props.m !== undefined) style.margin = props.m;
-  if (props.mx !== undefined) style.marginHorizontal = props.mx;
-  if (props.my !== undefined) style.marginVertical = props.my;
-  if (props.mt !== undefined) style.marginTop = props.mt;
-  if (props.mb !== undefined) style.marginBottom = props.mb;
-  if (props.ml !== undefined) style.marginLeft = props.ml;
-  if (props.mr !== undefined) style.marginRight = props.mr;
+  if (props.m !== undefined) style.margin = resolveSpacing(props.m);
+  if (props.mx !== undefined) style.marginHorizontal = resolveSpacing(props.mx);
+  if (props.my !== undefined) style.marginVertical = resolveSpacing(props.my);
+  if (props.mt !== undefined) style.marginTop = resolveSpacing(props.mt);
+  if (props.mb !== undefined) style.marginBottom = resolveSpacing(props.mb);
+  if (props.ml !== undefined) style.marginLeft = resolveSpacing(props.ml);
+  if (props.mr !== undefined) style.marginRight = resolveSpacing(props.mr);
 };
 
 const applyDimensions = (props: any, style: any) => {
@@ -104,19 +192,32 @@ const applyPosition = (props: any, style: any) => {
 };
 
 // ===================
-// View Style Mapper
+// Style Mapper
 // ===================
 export const styleMapper = (props: StyleProps): ViewStyle => {
   const style: ViewStyle = {};
 
+  // Handle shadow
   if (props.shadow && shadowStyles[props.shadow]) {
     Object.assign(style, shadowStyles[props.shadow]);
   }
 
-  if (props.bg !== undefined) style.backgroundColor = props.bg;
-  if (props.br !== undefined) style.borderRadius = props.br;
+  // Handle colors (direct values only)
+  if (props.bg !== undefined) {
+    style.backgroundColor = props.bg;
+  }
+
+  // Handle border radius
+  if (props.br !== undefined) {
+    style.borderRadius = resolveRadius(props.br);
+  }
+
   if (props.bw !== undefined) style.borderWidth = props.bw;
-  if (props.bc !== undefined) style.borderColor = props.bc;
+
+  // Handle border color
+  if (props.bc !== undefined) {
+    style.borderColor = props.bc;
+  }
 
   if (props.ai !== undefined) style.alignItems = props.ai;
   if (props.jc !== undefined) style.justifyContent = props.jc;
@@ -150,10 +251,27 @@ export const styleMapper = (props: StyleProps): ViewStyle => {
 // ===================
 export const fontStyleMapper = (props: FontStyleProps): TextStyle => {
   const style: TextStyle = {};
-  if (props.size !== undefined) style.fontSize = props.size;
-  if (props.weight !== undefined) style.fontWeight = props.weight;
-  if (props.font !== undefined) style.fontFamily = props.font;
-  if (props.c !== undefined) style.color = props.c;
+
+  // Handle font properties
+  if (props.size !== undefined && props.size !== null) {
+    const resolvedSize = resolveFontSize(props.size);
+    if (resolvedSize !== undefined && resolvedSize !== null) {
+      style.fontSize = resolvedSize;
+    }
+  }
+
+  if (props.weight !== undefined) {
+    style.fontWeight = resolveFontWeight(props.weight);
+  }
+
+  if (props.font !== undefined) {
+    style.fontFamily = props.font;
+  }
+
+  if (props.c !== undefined) {
+    style.color = props.c;
+  }
+
   if (props.ta !== undefined) style.textAlign = props.ta;
   if (props.lh !== undefined) style.lineHeight = props.lh;
   if (props.lp !== undefined) style.letterSpacing = props.lp;
@@ -161,7 +279,9 @@ export const fontStyleMapper = (props: FontStyleProps): TextStyle => {
   if (props.tt !== undefined) style.textTransform = props.tt;
   if (props.as !== undefined) style.alignSelf = props.as;
 
-  if (props.bg !== undefined) style.backgroundColor = props.bg;
+  if (props.bg !== undefined) {
+    style.backgroundColor = props.bg;
+  }
   if (props.opacity !== undefined) style.opacity = props.opacity;
 
   if (props.w !== undefined) style.width = props.w;
@@ -172,16 +292,24 @@ export const fontStyleMapper = (props: FontStyleProps): TextStyle => {
 };
 export const imageStyleMapper = (props: ImageStyleProps): ImageStyle => {
   const style: ImageStyle = {};
+
+  // Handle shadow
   if (props.shadow && shadowStyles[props.shadow]) {
     Object.assign(style, shadowStyles[props.shadow]);
   }
-  if (props.bg !== undefined) style.backgroundColor = props.bg;
+
+  if (props.bg !== undefined) {
+    style.backgroundColor = props.bg;
+  }
   if (props.opacity !== undefined) style.opacity = props.opacity;
 
-  if (props.bg !== undefined) style.backgroundColor = props.bg;
-  if (props.br !== undefined) style.borderRadius = props.br;
+  if (props.br !== undefined) {
+    style.borderRadius = resolveRadius(props.br);
+  }
   if (props.bw !== undefined) style.borderWidth = props.bw;
-  if (props.bc !== undefined) style.borderColor = props.bc;
+  if (props.bc !== undefined) {
+    style.borderColor = props.bc;
+  }
   if (props.as !== undefined) style.alignSelf = props.as;
 
   applySpacing(props, style);

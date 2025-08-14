@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-native';
 import { useToggle, useAppState, useDebounce, useThrottle } from '../../hooks';
 
 describe('Custom State Hooks', () => {
@@ -37,7 +37,8 @@ jest.useFakeTimers();
 describe('useDebounce', () => {
   it('should debounce value changes', () => {
     const { result, rerender } = renderHook(
-      ({ value, delay }) => useDebounce(value, delay),
+      ({ value, delay }: { value: any; delay: number }) =>
+        useDebounce(value, delay),
       {
         initialProps: { value: 'init', delay: 500 },
       }
@@ -61,7 +62,8 @@ jest.useFakeTimers();
 describe('useThrottle', () => {
   it('should throttle value changes', () => {
     const { result, rerender } = renderHook(
-      ({ value, limit }) => useThrottle(value, limit),
+      ({ value, limit }: { value: any; limit: number }) =>
+        useThrottle(value, limit),
       {
         initialProps: { value: 'first', limit: 1000 },
       }

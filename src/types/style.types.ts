@@ -1,13 +1,12 @@
 /**
  * FontStyleProps: Font and text-specific style props for Text components.
  */
-export interface FontStyleProps extends CommonType {
-  /** Font size */
-  size?: number;
-  /** Font weight */
+export interface FontStyleProps extends CommonTextType, AccessibilityProps {
+  /** Font size - can use predefined values like 'sm', 'md', 'lg' or numbers */
+  size?: FontSizeType | number;
+  /** Font weight - can use predefined values like 'normal', 'medium', 'bold' */
   weight?:
-    | 'normal'
-    | 'bold'
+    | FontWeightType
     | '100'
     | '200'
     | '300'
@@ -32,11 +31,17 @@ export interface FontStyleProps extends CommonType {
   /** Text transform */
   tt?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
   as?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
+
+  /** Accessibility-specific text props */
+  adjustsFontSizeToFit?: boolean;
+  allowFontScaling?: boolean;
+  maxFontSizeMultiplier?: number;
+  minimumFontScale?: number;
 }
 
 export interface ImageStyleProps extends CommonType {
-  /** Border radius */
-  br?: number;
+  /** Border radius - can use predefined values like 'sm', 'md', 'lg' or numbers */
+  br?: RadiusType | number;
   /** Border width */
   bw?: number;
   /** Border color */
@@ -44,10 +49,9 @@ export interface ImageStyleProps extends CommonType {
   /** alignItems */
   ai?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
   /** alignSelf */
+  as?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
   /** Predefined shadow type */
   shadow?: ShadowType;
-
-  as?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
 }
 // src/types/style.types.ts
 /**
@@ -59,6 +63,7 @@ import type {
   ImageStyle,
   DimensionValue,
 } from 'react-native';
+import type { AccessibilityProps } from '../accessibility/types';
 
 export type StyleProp = ViewStyle | TextStyle | ImageStyle;
 /**
@@ -77,6 +82,67 @@ export type ShadowType =
   | 'medium'
   | 'strong'
   | 'heavy';
+
+/**
+ * SpacingType: Predefined spacing values
+ */
+export type SpacingType =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl';
+
+/**
+ * RadiusType: Predefined border radius values
+ */
+export type RadiusType =
+  | 'none'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | 'full';
+
+/**
+ * FontSizeType: Predefined font size values
+ */
+export type FontSizeType =
+  | 'xs'
+  | 'sm'
+  | 'base'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl'
+  | '8xl'
+  | '9xl';
+
+/**
+ * FontWeightType: Predefined font weight values
+ */
+export type FontWeightType =
+  | 'thin'
+  | 'extralight'
+  | 'light'
+  | 'normal'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'extrabold'
+  | 'black';
 
 /**
  * StyleProps: Shorthand and extended style props for universal layout and design in React Native components.
@@ -106,9 +172,9 @@ export type ShadowType =
  *
  * Does not include font/text-specific props. For text, use StyleProps & FontStyleProps.
  */
-export interface StyleProps extends CenterType, CommonType {
-  /** Border radius */
-  br?: number;
+export interface StyleProps extends CenterType, CommonType, AccessibilityProps {
+  /** Border radius - can use predefined values like 'sm', 'md', 'lg' or numbers */
+  br?: RadiusType | number;
   /** Border width */
   bw?: number;
   /** Border color */
@@ -116,9 +182,7 @@ export interface StyleProps extends CenterType, CommonType {
   /** alignItems */
   ai?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
   /** alignSelf */
-
   as?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
-
   /** justifyContent */
   jc?:
     | 'flex-start'
@@ -133,17 +197,15 @@ export interface StyleProps extends CenterType, CommonType {
   f?: number;
   /** flexShrink */
   fs?: number;
-
   /** flexGrow */
   fg?: number;
-
   /** flexWrap */
   fw?: 'wrap' | 'nowrap' | 'wrap-reverse';
   /** Predefined shadow type */
   shadow?: ShadowType;
-
+  /** Gap between flex items */
   gap?: DimensionValue;
-
+  /** Test ID for testing */
   testID?: string;
   /** Additional style(s) */
   style?: StyleProp | StyleProp[];
@@ -152,56 +214,51 @@ export interface StyleProps extends CenterType, CommonType {
 interface CommonType {
   /** Background color */
   bg?: string;
-  /** Padding (all sides) */
-  p?: DimensionValue;
+  /** Padding (all sides) - can use predefined spacing like 'sm', 'md', 'lg' */
+  p?: SpacingType | DimensionValue;
   /** Padding horizontal */
-  px?: DimensionValue;
+  px?: SpacingType | DimensionValue;
   /** Padding vertical */
-  py?: DimensionValue;
+  py?: SpacingType | DimensionValue;
   /** Padding top */
-  pt?: DimensionValue;
+  pt?: SpacingType | DimensionValue;
   /** Padding bottom */
-  pb?: DimensionValue;
+  pb?: SpacingType | DimensionValue;
   /** Padding left */
-  pl?: DimensionValue;
+  pl?: SpacingType | DimensionValue;
   /** Padding right */
-  pr?: DimensionValue;
-  /** Margin (all sides) */
-  m?: DimensionValue;
+  pr?: SpacingType | DimensionValue;
+  /** Margin (all sides) - can use predefined spacing like 'sm', 'md', 'lg' */
+  m?: SpacingType | DimensionValue;
   /** Margin horizontal */
-  mx?: DimensionValue;
+  mx?: SpacingType | DimensionValue;
   /** Margin vertical */
-  my?: DimensionValue;
+  my?: SpacingType | DimensionValue;
   /** Margin top */
-  mt?: DimensionValue;
+  mt?: SpacingType | DimensionValue;
   /** Margin bottom */
-  mb?: DimensionValue;
+  mb?: SpacingType | DimensionValue;
   /** Margin left */
-  ml?: DimensionValue;
+  ml?: SpacingType | DimensionValue;
   /** Margin right */
-  mr?: DimensionValue;
+  mr?: SpacingType | DimensionValue;
   /** Width */
   w?: DimensionValue;
   /** Height */
   h?: DimensionValue;
-
-  /** Max width  */
+  /** Max width */
   maw?: DimensionValue;
-  /** Max height  */
+  /** Max height */
   mah?: DimensionValue;
-
-  /** Min width  */
+  /** Min width */
   miw?: DimensionValue;
-  /** Min height  */
+  /** Min height */
   mih?: DimensionValue;
-
-  /** Both width and height will be set to the same value   */
-
+  /** Both width and height will be set to the same value */
   size?: DimensionValue;
-
-  /** position */
+  /** Position */
   position?: 'absolute' | 'relative';
-  /** top */
+  /** Top */
   t?: DimensionValue;
   /** Bottom */
   b?: DimensionValue;
@@ -209,8 +266,66 @@ interface CommonType {
   l?: DimensionValue;
   /** Right */
   r?: DimensionValue;
+  /** Z-index */
+  z?: number;
+  /** View opacity */
+  opacity?: number;
+}
 
-  /** zIndex */
+interface CommonTextType {
+  /** Background color */
+  bg?: string;
+  /** Padding (all sides) - can use predefined spacing like 'sm', 'md', 'lg' */
+  p?: SpacingType | DimensionValue;
+  /** Padding horizontal */
+  px?: SpacingType | DimensionValue;
+  /** Padding vertical */
+  py?: SpacingType | DimensionValue;
+  /** Padding top */
+  pt?: SpacingType | DimensionValue;
+  /** Padding bottom */
+  pb?: SpacingType | DimensionValue;
+  /** Padding left */
+  pl?: SpacingType | DimensionValue;
+  /** Padding right */
+  pr?: SpacingType | DimensionValue;
+  /** Margin (all sides) - can use predefined spacing like 'sm', 'md', 'lg' */
+  m?: SpacingType | DimensionValue;
+  /** Margin horizontal */
+  mx?: SpacingType | DimensionValue;
+  /** Margin vertical */
+  my?: SpacingType | DimensionValue;
+  /** Margin top */
+  mt?: SpacingType | DimensionValue;
+  /** Margin bottom */
+  mb?: SpacingType | DimensionValue;
+  /** Margin left */
+  ml?: SpacingType | DimensionValue;
+  /** Margin right */
+  mr?: SpacingType | DimensionValue;
+  /** Width */
+  w?: DimensionValue;
+  /** Height */
+  h?: DimensionValue;
+  /** Max width */
+  maw?: DimensionValue;
+  /** Max height */
+  mah?: DimensionValue;
+  /** Min width */
+  miw?: DimensionValue;
+  /** Min height */
+  mih?: DimensionValue;
+  /** Position */
+  position?: 'absolute' | 'relative';
+  /** Top */
+  t?: DimensionValue;
+  /** Bottom */
+  b?: DimensionValue;
+  /** Left */
+  l?: DimensionValue;
+  /** Right */
+  r?: DimensionValue;
+  /** Z-index */
   z?: number;
   /** View opacity */
   opacity?: number;
